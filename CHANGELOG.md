@@ -12,3 +12,4 @@ First release.
 - Option to hide recommendations and comments.
 - Puts your quality and caption settings back when listen mode is turned off.
 - Chrome extension (Manifest V3) and a Safari Xcode project for Mac and iOS.
+- Firefox build added to the 1.0.0 release later the same day. Same code, with a Firefox manifest.

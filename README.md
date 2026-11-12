@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>Listen to YouTube and read the transcript when your internet is slow.</b><br>
-  A free browser extension for Chrome and Safari. One click drops the video to 144p, hides it, and shows a transcript that follows the audio.
+  A free browser extension for Chrome, Firefox and Safari. One click drops the video to 144p, hides it, and shows a transcript that follows the audio.
 </p>
 
 <p align="center">
@@ -67,6 +67,14 @@ No, and I would rather say so. YouTube's web player now gets audio and video thr
 
 It is not on the Chrome Web Store yet.
 
+### Firefox
+
+1. Download `thinstream-firefox-1.0.0.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on** and pick the zip.
+
+Firefox removes a temporary add-on when it restarts, so you load it again next time. A permanent install needs Mozilla to sign it, and it is not on addons.mozilla.org yet. Needs Firefox 140 or newer.
+
 ### Safari on Mac
 
 Safari extensions ship inside a small Mac app, so this one is built with Xcode.
@@ -98,7 +106,7 @@ Checked on 2026-11-12 from each tool's own store page or site. If something here
 
 | Tool | Price | Browsers | Lowers data use | Hides the video | Transcript that follows the audio |
 |---|---|---|---|---|---|
-| **Thinstream** | Free | Chrome, Safari | Yes, holds 144p | Yes | Yes |
+| **Thinstream** | Free | Chrome, Firefox, Safari | Yes, holds 144p | Yes | Yes |
 | [Audio Only Youtube](https://chromewebstore.google.com/detail/audio-only-youtube/pkocpiliahoaohbolmkelakpiphnllog) | Free | Chrome | Aims for audio only | Yes | No |
 | [Music Mode for YouTube](https://chromewebstore.google.com/detail/music-mode-for-youtube/abbpaepbpakcpipajigmlpnhlnbennna) | Free | Chrome, Firefox | Lowers the quality of hidden videos | Yes | No |
 | [Vinegar](https://apps.apple.com/us/app/vinegar-tube-cleaner/id1591303229) | $1.99 | Safari on iPhone, iPad, Mac | Has an audio only option | Replaces the player | No, subtitles only |
@@ -167,7 +175,8 @@ Yes. Free for any noncommercial use. See [License](#license).
 - `extension/src/page.js` runs inside the YouTube page. It asks the player for its lowest quality with the player's own API, turns on the caption track so the player fetches it, and reads that response.
 - `extension/src/content.js` draws the panel and the button and keeps settings in sync.
 - `extension/popup/` is the toolbar popup.
-- `safari/` is the Xcode project that wraps the same `extension/` folder for Safari. Nothing is copied, both browsers run the same files.
+- `safari/` is the Xcode project that wraps the same `extension/` folder for Safari. Nothing is copied.
+- The Firefox build is the same files with a small manifest change, made by `scripts/build.sh`. All three browsers run the same code.
 
 When you turn listen mode off, your earlier quality setting and caption state are put back.
 
@@ -177,7 +186,7 @@ When you turn listen mode off, your earlier quality setting and caption state ar
 ./scripts/build.sh
 ```
 
-That writes `dist/thinstream-chrome-1.0.0.zip`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
+That writes `dist/thinstream-chrome-1.0.0.zip`, `dist/thinstream-firefox-1.0.0.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
 
 For Safari, open the Xcode project as described in [Install](#install).
 
@@ -185,6 +194,7 @@ For Safari, open the Xcode project as described in [Install](#install).
 
 - Chrome for Testing with the real extension loaded: button, 144p, hide, restore, popup, and the Safari style loading path.
 - The same code on live YouTube in a normal browser session: transcript loading, language switch, click to seek, moving to another video.
+- Firefox 160 with the real add-on loaded: button, 144p, hide, restore, the transcript view, click to seek and text size. Mozilla's `web-ext lint` reports no errors. The popup was not opened in Firefox.
 - Safari: the Mac and iOS apps compile. The extension has not been run inside Safari yet.
 
 ## License

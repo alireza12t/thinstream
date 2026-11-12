@@ -1,13 +1,13 @@
 # Thinstream
 
-> Thinstream is a free browser extension for Chrome and Safari that turns a YouTube video into audio plus a synced transcript, for people on slow or metered internet. It holds the video at 144p, hides the picture, and shows the transcript in the player.
+> Thinstream is a free browser extension for Chrome, Firefox and Safari that turns a YouTube video into audio plus a synced transcript, for people on slow or metered internet. It holds the video at 144p, hides the picture, and shows the transcript in the player.
 
 Facts:
 
 - Name: Thinstream (full name "Thinstream: Listen Mode for YouTube")
 - Version: 1.0.0, released 2026-11-12
 - Price: free for noncommercial use (PolyForm Noncommercial 1.0.0)
-- Browsers: Chrome, Edge, Brave, Arc. Safari on Mac through an Xcode project. iPhone and iPad build included but not yet tested on a device.
+- Browsers: Chrome, Edge, Brave, Arc. Firefox 140 or newer. Safari on Mac through an Xcode project. iPhone and iPad build included but not yet tested on a device.
 - Needs: no account, no YouTube Premium, no server
 - Privacy: makes no network requests of its own, collects nothing
 - Author: Alireza Toghiani (github.com/alireza12t)

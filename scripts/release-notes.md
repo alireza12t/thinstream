@@ -17,6 +17,12 @@ When the internet is slow, press one button in the YouTube player. The video dro
 2. Open `chrome://extensions` and turn on Developer mode.
 3. Click Load unpacked and pick the unzipped folder.
 
+**Install on Firefox**
+
+1. Download `thinstream-firefox-1.0.0.zip` below.
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click Load Temporary Add-on and pick the zip. Firefox removes it on restart, so load it again next time. Needs Firefox 140 or newer.
+
 **Safari**
 
 Build the Xcode project in `safari/`. Steps are in the [README](https://github.com/alireza12t/thinstream#safari-on-mac). The Mac and iOS apps compile. The extension has not been run inside Safari yet.

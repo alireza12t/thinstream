@@ -1,5 +1,6 @@
 .DS_Store
 dist/
+video/
 node_modules/
 xcuserdata/
 *.xcuserstate
