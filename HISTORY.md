@@ -8,7 +8,7 @@ Browser extension for Chrome and Safari. On YouTube it holds the video at 144p, 
 
 ## State
 
-- 1.0.0 built on 2026-11-12.
+- 1.0.0 built and published on 2026-11-12: public repo, GitHub Pages site and release `v1.0.0` with the Chrome zip are live.
 - License: PolyForm Noncommercial 1.0.0. Alireza asked for "anyone can use it, nobody can earn money from it".
 - Name check: no extension called Thinstream turned up in a web search on 2026-11-12. A fuzzy App Store check has not been done.
 
