@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Thinstream: Listen Mode for YouTube",
+  "short_name": "Thinstream",
+  "version": "1.0.0",
+  "description": "Listen to YouTube and read the transcript on slow internet. Drops video to 144p, hides it and shows a synced transcript.",
+  "homepage_url": "https://alireza12t.github.io/thinstream/",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Thinstream",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+      "js": ["src/page.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+      "js": ["src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/page.js"],
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"]
+    }
+  ]
+}

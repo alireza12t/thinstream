@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thinstream: listen to YouTube and read the transcript on slow internet</title>
+<meta name="description" content="Free Chrome and Safari extension for slow internet. One click holds a YouTube video at 144p, hides it, and shows a transcript that follows the audio. No account, no tracking.">
+<meta name="keywords" content="YouTube audio only extension, YouTube transcript extension, YouTube data saver, listen to YouTube without video, YouTube slow internet, YouTube low bandwidth, Chrome extension, Safari extension, YouTube listen mode">
+<meta name="author" content="Alireza Toghiani">
+<link rel="canonical" href="https://alireza12t.github.io/thinstream/">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<meta name="theme-color" content="#0b1613">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thinstream">
+<meta property="og:title" content="Thinstream: listen mode for YouTube">
+<meta property="og:description" content="On slow internet, press one button. The video drops to 144p and hides, and you get the audio with a transcript that follows along. Free for Chrome and Safari.">
+<meta property="og:url" content="https://alireza12t.github.io/thinstream/">
+<meta property="og:image" content="https://alireza12t.github.io/thinstream/assets/og.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thinstream: listen mode for YouTube">
+<meta name="twitter:description" content="Audio plus a synced transcript when your internet is slow. Free for Chrome and Safari.">
+<meta name="twitter:image" content="https://alireza12t.github.io/thinstream/assets/og.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Thinstream",
+  "alternateName": "Thinstream: Listen Mode for YouTube",
+  "description": "A free browser extension for Chrome and Safari that holds a YouTube video at 144p, hides the picture, and shows a transcript that follows the audio. Made for slow or metered internet.",
+  "applicationCategory": "BrowserApplication",
+  "operatingSystem": "Chrome, Edge, Brave, Safari on macOS",
+  "softwareVersion": "1.0.0",
+  "datePublished": "2026-11-12",
+  "url": "https://alireza12t.github.io/thinstream/",
+  "downloadUrl": "https://github.com/alireza12t/thinstream/releases/latest",
+  "codeRepository": "https://github.com/alireza12t/thinstream",
+  "license": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+  "image": "https://alireza12t.github.io/thinstream/assets/og.png",
+  "screenshot": "https://alireza12t.github.io/thinstream/assets/screenshot.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Alireza Toghiani", "url": "https://github.com/alireza12t" },
+  "featureList": [
+    "Holds YouTube video at the lowest quality, 144p",
+    "Hides the video picture",
+    "Transcript that follows the audio",
+    "Click a transcript line to jump to that moment",
+    "Caption language picker",
+    "Copy the transcript or save it as a text file",
+    "Per video data estimate",
+    "No account, no server, no tracking"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I listen to a YouTube video without loading the video?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Install Thinstream, open the video and press the Listen mode button in the player. The video drops to 144p and is hidden, and you get the audio with a transcript that follows along." } },
+    { "@type": "Question", "name": "How can I watch YouTube on slow internet or a small data plan?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Use Thinstream's listen mode. It holds every video at 144p. On a 10 minute test video that was about 15 MB instead of 66 to 97 MB at 720p." } },
+    { "@type": "Question", "name": "Does Thinstream download only the audio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. YouTube's web player no longer offers a separate audio stream, so Thinstream holds the video at 144p and hides it. On the test video the hidden picture was about 5 MB of the 15 MB total." } },
+    { "@type": "Question", "name": "Can I read a YouTube video instead of watching it?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Thinstream fills the player with the transcript, highlights the current line, and lets you copy it or save it as a text file." } },
+    { "@type": "Question", "name": "Is Thinstream free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is free for any noncommercial use under the PolyForm Noncommercial 1.0.0 license. It needs no account and no YouTube Premium." } },
+    { "@type": "Question", "name": "Does Thinstream collect data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It makes no network requests of its own. Settings stay in your browser." } },
+    { "@type": "Question", "name": "Which browsers does Thinstream work in?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Chrome and other Chromium browsers such as Edge, Brave and Arc, and Safari on Mac through an Xcode project. An iPhone and iPad build is included but not yet tested on a device." } }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f6faf8; --card: #ffffff; --fg: #10201b; --muted: #55665f; --line: #dfe9e5;
+    --accent: #0c9c7c; --accent-fg: #ffffff; --soft: #e6f6f0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #070b0a; --card: #0f1a17; --fg: #e9f5f0; --muted: #9bb0a8; --line: #1d2b27;
+      --accent: #5ef2c0; --accent-fg: #06281f; --soft: #12261f;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+  header { padding: 44px 0 8px; text-align: center; }
+  header img.logo { width: 84px; height: 84px; }
+  h1 { font-size: clamp(30px, 6vw, 46px); line-height: 1.12; margin: 18px 0 12px; letter-spacing: -0.02em; }
+  .lead { font-size: clamp(17px, 2.6vw, 20px); color: var(--muted); max-width: 640px; margin: 0 auto 24px; }
+  .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 12px; font-weight: 600;
+    text-decoration: none; border: 1px solid var(--line); color: var(--fg); background: var(--card);
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+  .shot { margin: 34px 0 8px; }
+  .shot img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--line); }
+  h2 { font-size: 26px; line-height: 1.2; margin: 52px 0 14px; letter-spacing: -0.01em; }
+  p { margin: 0 0 14px; }
+  ul { padding-left: 22px; margin: 0 0 14px; }
+  li { margin: 6px 0; }
+  a { color: var(--accent); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 520px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  tr.me td { background: var(--soft); font-weight: 600; }
+  .note { color: var(--muted); font-size: 14px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 2px; color: var(--muted); }
+  ol { padding-left: 22px; }
+  code { background: var(--soft); padding: 1px 6px; border-radius: 6px; font-size: 0.92em; }
+  footer { margin: 60px 0 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img class="logo" src="assets/logo.svg" width="84" height="84" alt="Thinstream logo">
+  <h1>Listen to YouTube when your internet is slow</h1>
+  <p class="lead">Thinstream is a free extension for Chrome and Safari. Press one button and the video drops to 144p and hides. You get the audio and a transcript that follows along.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://github.com/alireza12t/thinstream/releases/latest">Download for Chrome</a>
+    <a class="btn" href="https://github.com/alireza12t/thinstream#safari-on-mac">Safari on Mac</a>
+    <a class="btn" href="https://github.com/alireza12t/thinstream">GitHub</a>
+  </div>
+</header>
+
+<div class="shot">
+  <img src="assets/screenshot.png" width="1200" height="900" alt="Thinstream listen mode on YouTube. The picture is hidden and the transcript is shown with the current line highlighted.">
+</div>
+
+<h2>What it does</h2>
+<div class="grid">
+  <div class="card"><h3>Holds 144p</h3><p>The video stays at the lowest quality YouTube offers, on every video, until you turn it off.</p></div>
+  <div class="card"><h3>Hides the picture</h3><p>No blurry frame to stare at. The player becomes a reading view.</p></div>
+  <div class="card"><h3>Transcript that follows</h3><p>The current line is highlighted and scrolls with the audio. Click a line to jump there.</p></div>
+  <div class="card"><h3>Your language</h3><p>Pick any caption track the video has. Change text size, copy it, or save it as a text file.</p></div>
+  <div class="card"><h3>Shows the saving</h3><p>The panel tells you roughly how much data this video needs in listen mode and at normal quality.</p></div>
+  <div class="card"><h3>Private</h3><p>No account, no server, no tracking, no AI. It uses the captions YouTube already has.</p></div>
+</div>
+
+<h2>How much data it saves</h2>
+<p>File sizes YouTube lists for one real video, <a href="https://www.youtube.com/watch?v=aqz-KE-bpKQ">Big Buck Bunny 60fps 4K</a> (10 minutes 35 seconds), read on 2026-11-12. Video plus the standard audio track.</p>
+<div class="scroll">
+<table>
+  <tr><th>How you watch</th><th>Data for the whole video</th><th>Compared with listen mode</th></tr>
+  <tr class="me"><td>Listen mode (144p, hidden)</td><td>about 15 MB</td><td></td></tr>
+  <tr><td>480p</td><td>36 to 43 MB</td><td>2 to 3 times more</td></tr>
+  <tr><td>720p</td><td>66 to 97 MB</td><td>4 to 6 times more</td></tr>
+  <tr><td>1080p 60fps</td><td>134 to 268 MB</td><td>9 to 18 times more</td></tr>
+</table>
+</div>
+<p class="note">The saving depends on the video. Calm lectures compress well, so the gap is smaller. It is not true audio only: YouTube's web player no longer offers a separate audio stream, so 144p is the floor.</p>
+
+<h2>Install</h2>
+<ol>
+  <li>Download <code>thinstream-chrome-1.0.0.zip</code> from the <a href="https://github.com/alireza12t/thinstream/releases/latest">latest release</a> and unzip it.</li>
+  <li>Open <code>chrome://extensions</code> and turn on Developer mode.</li>
+  <li>Click Load unpacked and pick the unzipped folder.</li>
+  <li>Open a YouTube video and press the Thinstream button in the player.</li>
+</ol>
+<p>Works in Chrome, Edge, Brave and Arc. For Safari on Mac, build the Xcode project in the repo. <a href="https://github.com/alireza12t/thinstream#install">Full steps</a>.</p>
+
+<h2>How it compares</h2>
+<div class="scroll">
+<table>
+  <tr><th>Tool</th><th>Price</th><th>Lowers data use</th><th>Hides video</th><th>Synced transcript</th></tr>
+  <tr class="me"><td>Thinstream</td><td>Free</td><td>Yes, holds 144p</td><td>Yes</td><td>Yes</td></tr>
+  <tr><td>Audio Only Youtube</td><td>Free</td><td>Aims for audio only</td><td>Yes</td><td>No</td></tr>
+  <tr><td>Music Mode for YouTube</td><td>Free</td><td>Lowers quality of hidden videos</td><td>Yes</td><td>No</td></tr>
+  <tr><td>Vinegar</td><td>$1.99</td><td>Has an audio only option</td><td>Replaces the player</td><td>No</td></tr>
+  <tr><td>Glasp YouTube Summary</td><td>Free tier, Pro $15 a month</td><td>No</td><td>No</td><td>Yes, with AI summaries</td></tr>
+  <tr><td>YouTube Show transcript</td><td>Free</td><td>No</td><td>No</td><td>Yes</td></tr>
+  <tr><td>YouTube Premium</td><td>$15.99 a month</td><td>Not stated</td><td>Background play</td><td>No</td></tr>
+</table>
+</div>
+<p class="note">Checked on 2026-11-12 from each tool's own page. Sources and the cases where another tool is the better pick are in the <a href="https://github.com/alireza12t/thinstream#how-it-compares">README</a>.</p>
+
+<h2>Questions</h2>
+<details><summary>How do I listen to a YouTube video without loading the video?</summary><p>Install Thinstream, open the video and press the Listen mode button in the player. The video drops to 144p and is hidden, and you get the audio with a transcript.</p></details>
+<details><summary>Does it download only the audio?</summary><p>No. YouTube's web player no longer offers a separate audio stream, so 144p is the floor. On the test video the hidden picture was about 5 MB of the 15 MB.</p></details>
+<details><summary>What if a video has no captions?</summary><p>Listen mode still works and the audio keeps playing. The panel tells you there is no transcript.</p></details>
+<details><summary>Does it need YouTube Premium or an account?</summary><p>No.</p></details>
+<details><summary>Does it collect any data?</summary><p>No. It makes no network requests of its own. Settings stay in your browser.</p></details>
+<details><summary>Does it block ads?</summary><p>No. It does not touch ads.</p></details>
+<details><summary>Does it work on iPhone?</summary><p>An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app.</p></details>
+<details><summary>Is it free?</summary><p>Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money.</p></details>
+
+<footer>
+  <p>Made by Alireza Toghiani. <a href="https://www.youtube.com/@DevMvRick">YouTube</a> · <a href="https://instagram.com/devmvrick">Instagram</a> · <a href="https://github.com/alireza12t">GitHub</a></p>
+  <p>Thinstream is not affiliated with or endorsed by YouTube or Google. YouTube is a trademark of Google LLC.</p>
+</footer>
+
+</div>
+</body>
+</html>

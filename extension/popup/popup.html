@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thinstream</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="../icons/icon-48.png" width="32" height="32" alt="">
+    <div>
+      <h1>Thinstream</h1>
+      <p>Listen mode for YouTube</p>
+    </div>
+  </header>
+
+  <label class="row main">
+    <span>
+      <strong>Listen mode</strong>
+      <small>Video drops to 144p and hides. You get the audio and a transcript that follows along.</small>
+    </span>
+    <input type="checkbox" id="on" class="switch">
+  </label>
+
+  <label class="row">
+    <span>
+      <strong>Hide recommendations and comments</strong>
+      <small>Fewer thumbnails to load while listen mode is on.</small>
+    </span>
+    <input type="checkbox" id="hideExtras" class="switch">
+  </label>
+
+  <p class="stats" id="stats"></p>
+
+  <footer>
+    <a href="https://alireza12t.github.io/thinstream/" target="_blank" rel="noopener">How it works</a>
+    <a href="https://github.com/alireza12t/thinstream" target="_blank" rel="noopener">GitHub</a>
+    <span id="version"></span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
