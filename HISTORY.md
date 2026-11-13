@@ -40,7 +40,8 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 
 ## Open items
 
-- [ ] Ad break screen is in the working tree, not committed and not released. Needs a version from Alireza (next would be 1.0.4) and a listen by ear to the jazz loop (overall level is the `0.7` gain in `startNoise`).
+- [ ] Jazz loop on the ad screen has not been heard by ear (overall level is the `0.7` gain in `startNoise`). Ask him how it sounds.
+- [ ] Upload the build 5 archives from Xcode's Organizer (see App Store status). Firefox is still not on addons.mozilla.org: he runs `sh scripts/amo-submit.sh` with his Mozilla keys.
 
 ### After Alireza approves the videos (his instruction, 2026-11-12)
 
@@ -122,3 +123,5 @@ Full audit, ranked gaps and his steps: `SEO-AUDIT-2026-11-12.md`. Done with the 
 - 1.0.2 released 2026-11-13 (he said "Yes, cut 1.0.2"): phone and tablet panel fix for Chrome and Firefox. The Safari project stays at 1.0.1 for now, since the Mac 1.0.1 is in review and the iPhone build 3 (with the fix) was archived at 1.0.1.
 - 1.0.3 released 2026-11-13 (he said "Yes, cut 1.0.3"): transcript fallback when the player's caption list stays empty. Tested on 6 videos in a normal browser. Not verified on a real phone.
 - 2026-11-13: iPhone build 1.0.1 (4) with the phone panel fix and the transcript fallback works on his iPhone through TestFlight (his words: "works"). Next session: take 3 iPhone screenshots, size them for iPhone 6.9 inch and iPad 13 inch, add them to the iOS 1.0.1 version page, attach build 4, and submit. The Mac 1.0.1 (build 2) in review does not have these fixes; ship them in the next Mac update.
+- 1.0.4 released 2026-11-13 (he said "Yes, cut 1.0.4"): ad break screen with mute, countdown and the jazz loop. GitHub release has both zips, the site shows 1.0.4, and the README and site answer to "Does it block ads?" now says ads still play, muted, with a countdown. Chrome test passed on the 1.0.4 build. Firefox test not run.
+- 2026-11-13: Safari archives with the 1.0.4 code, still marketing version 1.0.1 (he did not ask for a Safari version change), build 5: `dist/appstore/Thinstream-mac-1.0.1-build5.xcarchive` and `Thinstream-ios-1.0.1-build5.xcarchive`. Built from the command line, not uploaded and not run in Safari. iOS build 5 can replace build 4 on the unsubmitted iOS 1.0.1. The Mac 1.0.1 (build 2) is still in review, so Mac build 5 only goes up if he pulls that submission, otherwise it needs a new Mac version after approval.
