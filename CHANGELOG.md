@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased (on main, not in the 1.0.0 zips)
+
+- Fixed: the transcript could fail to load when captions were already on before listen mode was switched on.
+- Fixed: the data estimate showed odd labels such as "546p" on wide films. It now uses YouTube's own labels.
+- Changed: clicking a transcript line now jumps with the player's own seek call.
+
 ## 1.0.0 (2026-11-12)
 
 First release.

@@ -148,8 +148,12 @@
       const line = lines[Number(row.dataset.i)];
       if (!line) return;
       lastUserScroll = 0;
-      boundVideo.currentTime = line.t;
-      if (boundVideo.paused) boundVideo.play().catch(() => {});
+      if (pageReady) {
+        send('seek', { t: line.t });
+      } else {
+        boundVideo.currentTime = line.t;
+        if (boundVideo.paused) boundVideo.play().catch(() => {});
+      }
     });
   }
 

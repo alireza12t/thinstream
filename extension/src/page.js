@@ -42,7 +42,19 @@
     const { type, data } = e.data;
     if (type === 'set') set(data || {});
     else if (type === 'track') chooseTrack(data && data.index);
+    else if (type === 'seek') seekTo(data && data.t);
   });
+
+  // Jump with the player's own seek. Setting video.currentTime directly can break
+  // playback on long videos, because the player decides what to buffer.
+  function seekTo(t) {
+    const p = player();
+    if (!p || typeof t !== 'number') return;
+    try {
+      p.seekTo(t, true);
+      if (typeof p.getPlayerState === 'function' && p.getPlayerState() !== 1) p.playVideo();
+    } catch (_) {}
+  }
 
   function player() {
     const el = document.getElementById('movie_player');
@@ -179,16 +191,18 @@
       return sizes.length ? sizes.reduce((a, b) => a + b, 0) / sizes.length : 0;
     };
     const audio = formats.filter((f) => /^audio\//.test(f.mimeType || ''));
-    const video = formats.filter((f) => /^video\//.test(f.mimeType || '') && f.height);
+    // Use YouTube's own label (144p, 720p) so wide films are not shown as "546p".
+    const label = (f) => parseInt(f.qualityLabel, 10) || f.height || 0;
+    const video = formats.filter((f) => /^video\//.test(f.mimeType || '') && label(f));
     if (!audio.length || !video.length) return null;
     const medium = audio.filter((f) => f.audioQuality === 'AUDIO_QUALITY_MEDIUM');
     const audioBytes = avg(medium.length ? medium : audio);
-    const heights = [...new Set(video.map((f) => f.height))].sort((a, b) => a - b);
+    const heights = [...new Set(video.map(label))].sort((a, b) => a - b);
     const low = heights[0];
     const base = heights.filter((h) => h <= baselineHint).pop() || low;
     if (base <= low) return null;
-    const lowBytes = avg(video.filter((f) => f.height === low));
-    const baseBytes = avg(video.filter((f) => f.height === base));
+    const lowBytes = avg(video.filter((f) => label(f) === low));
+    const baseBytes = avg(video.filter((f) => label(f) === base));
     if (!audioBytes || !lowBytes || !baseBytes) return null;
     return {
       listen: Math.round(audioBytes + lowBytes),
@@ -306,6 +320,7 @@
     // 3. Still nothing: switch captions off and on so the player asks again.
     setTimeout(() => {
       if (!pending()) return;
+      try { p.setOption('captions', 'reload', true); } catch (_) {}
       try {
         p.setOption('captions', 'track', {});
         setTimeout(() => { try { p.setOption('captions', 'track', track); } catch (_) {} }, 400);
@@ -424,6 +439,10 @@
       return originalOpen.apply(this, arguments);
     };
   }
+
+  // Start watching caption requests right away. If captions are already on, the player
+  // loads them before listen mode is switched on, and it will not ask for them twice.
+  patchNetwork();
 
   post('ready', {});
 })();

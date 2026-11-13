@@ -6,3 +6,6 @@ xcuserdata/
 *.xcuserstate
 DerivedData/
 build/
+demo/footage/
+demo/node_modules/
+demo/package*.json
