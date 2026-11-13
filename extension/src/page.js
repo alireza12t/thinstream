@@ -254,6 +254,18 @@
       if (!state.on || state.videoId !== id) return;
       let list = [];
       try { list = p.getOption('captions', 'tracklist') || []; } catch (_) {}
+      // Some videos never fill the player's track list. After a few seconds, build it
+      // from the caption tracks in the video's own data and ask the player for one.
+      if (!list.length && tries >= 6) {
+        list = listed.map((t) => ({
+          languageCode: t.languageCode,
+          kind: t.kind || '',
+          name: '',
+          displayName: (t.name && (t.name.simpleText || (t.name.runs || []).map((r) => r.text).join(''))) || t.languageCode,
+          vss_id: t.vssId,
+        }));
+        if (tries === 6) { try { p.loadModule('captions'); p.toggleSubtitles && p.toggleSubtitles(); } catch (_) {} }
+      }
       if (list.length) {
         state.tracks = list;
         let current = {};
