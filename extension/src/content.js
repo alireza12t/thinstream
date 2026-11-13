@@ -5,7 +5,7 @@
   'use strict';
 
   const api = globalThis.browser ?? globalThis.chrome;
-  const DEFAULTS = { on: false, hideExtras: false, fontSize: 20, lang: '' };
+  const DEFAULTS = { on: false, hideExtras: false, fontSize: 20, lang: '', adNoise: true };
   const SVG = 'http://www.w3.org/2000/svg';
   // Phones and tablets in any browser (Safari, Chrome, Firefox): the video player takes
   // taps on top of it, so these get the panel as a sheet in the page instead.
@@ -26,6 +26,9 @@
   let pendingSeconds = 0;
   let pageReady = false;
   let boundVideo = null;
+  let adOn = false;
+  let adMuted = [];
+  let noise = null;
 
   // ---------- tiny DOM helpers (no innerHTML, YouTube enforces Trusted Types) ----------
 
@@ -126,13 +129,23 @@
     ui.empty = h('div', { class: 'ts-empty' });
     ui.lines = h('div', { class: 'ts-lines' });
     ui.body = h('div', { class: 'ts-body' }, ui.title, ui.empty, ui.lines);
+    ui.adLabel = h('div', { class: 'ts-ad-label', text: 'Ad break' });
+    ui.adClock = h('div', { class: 'ts-ad-clock', role: 'timer', text: '' });
+    ui.adNoise = h('button', {
+      class: 'ts-tool',
+      onclick: () => save({ adNoise: !settings.adNoise }),
+    });
+    ui.ad = h('div', { class: 'ts-ad' },
+      ui.adLabel, ui.adClock,
+      h('div', { class: 'ts-ad-note', text: 'The ad is muted. Your video continues when it ends.' }),
+      ui.adNoise);
     ui.follow = h('button', {
       class: 'ts-follow',
       text: 'Back to now',
       onclick: () => { lastUserScroll = 0; scrollToActive(true); },
     });
     ui.panel = h('div', { id: 'thinstream-panel', role: 'region', 'aria-label': 'Thinstream listen mode' },
-      ui.head, ui.body, ui.follow);
+      ui.head, ui.ad, ui.body, ui.follow);
 
     // Keep clicks and keys inside the panel away from YouTube's player shortcuts.
     for (const type of ['click', 'dblclick', 'mousedown', 'mouseup', 'pointerdown', 'pointerup',
@@ -234,6 +247,7 @@
     const inAd = !!(player && player.classList.contains('ad-showing'));
     const dt = t - lastTime;
     lastTime = t;
+    checkAd();
     if (!settings.on || inAd) return;
     if (dt > 0 && dt < 2 && !boundVideo.paused) {
       pendingSeconds += dt;
@@ -249,6 +263,169 @@
     const row = ui.lines.children[i];
     if (row) row.classList.add('ts-now');
     scrollToActive(false);
+  }
+
+  // ---------- ads ----------
+  // While an ad plays in listen mode: mute it, show a countdown instead of the
+  // transcript, and play quiet jazz so the silence does not feel like a stall.
+  // The music is made in the browser, nothing is downloaded.
+  // YouTube's own Skip button stays on top of the panel. It ignores scripted clicks
+  // (tested 2026-11-13), so skipping is left to the listener.
+
+  // A slow jazz loop (ii V I VI: electric piano chords, walking bass, brushed ride)
+  // over a little hiss. Every note is made here with Web Audio.
+  const JAZZ = [
+    { chord: [53, 57, 60, 64], bass: [38, 41, 45, 44] }, // Dm9
+    { chord: [53, 59, 64, 69], bass: [43, 47, 50, 49] }, // G13
+    { chord: [52, 59, 62, 67], bass: [36, 40, 43, 46] }, // Cmaj9
+    { chord: [55, 61, 65, 70], bass: [45, 43, 41, 40] }, // A7
+  ];
+  const BEAT = 60 / 84;
+  const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
+
+  function tone(n, type, freq, at, peak, len) {
+    const osc = n.ctx.createOscillator();
+    const g = n.ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0, at);
+    g.gain.linearRampToValueAtTime(peak, at + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + len);
+    osc.connect(g).connect(n.warm);
+    osc.start(at);
+    osc.stop(at + len + 0.05);
+  }
+
+  function brush(n, at, peak) {
+    const src = n.ctx.createBufferSource();
+    const g = n.ctx.createGain();
+    src.buffer = n.hiss;
+    g.gain.setValueAtTime(peak, at);
+    g.gain.exponentialRampToValueAtTime(0.0001, at + 0.22);
+    src.connect(g).connect(n.bright);
+    src.start(at, Math.random());
+    src.stop(at + 0.25);
+  }
+
+  function chord(n, notes, at, peak) {
+    notes.forEach((m, i) => {
+      const t = at + i * 0.012;
+      tone(n, 'sine', hz(m), t, peak, 2.2);
+      tone(n, 'sine', hz(m) * 2, t, peak * 0.18, 0.9);
+    });
+  }
+
+  // Schedules notes a little ahead of the clock, so a throttled background tab keeps time.
+  function playAhead() {
+    const n = noise;
+    if (!n) return;
+    while (n.next < n.ctx.currentTime + 2.2) {
+      const bar = JAZZ[Math.floor(n.step / 4) % JAZZ.length];
+      const beat = n.step % 4;
+      const at = n.next;
+      const swing = at + BEAT * 2 / 3;
+      const soft = 0.85 + Math.random() * 0.3;
+      tone(n, 'triangle', hz(bar.bass[beat]), at, 0.16 * soft, BEAT * 1.1);
+      brush(n, at, 0.05 * soft);
+      if (beat === 1 || beat === 3) brush(n, swing, 0.03 * soft);
+      if (beat === 0) chord(n, bar.chord, at, 0.045);
+      if (beat === 1) chord(n, bar.chord, swing, 0.03);
+      n.next += BEAT;
+      n.step++;
+    }
+  }
+
+  function startNoise() {
+    if (noise) return;
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    try {
+      const ctx = new Ctx();
+      const hiss = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+      const data = hiss.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.7, ctx.currentTime + 0.6);
+      gain.connect(ctx.destination);
+      const warm = ctx.createBiquadFilter();
+      warm.type = 'lowpass';
+      warm.frequency.value = 1800;
+      warm.connect(gain);
+      const bright = ctx.createBiquadFilter();
+      bright.type = 'highpass';
+      bright.frequency.value = 5000;
+      bright.connect(gain);
+      const bed = ctx.createBufferSource();
+      bed.buffer = hiss;
+      bed.loop = true;
+      const bedGain = ctx.createGain();
+      bedGain.gain.value = 0.006;
+      bed.connect(bedGain).connect(warm);
+      bed.start();
+      noise = { ctx, gain, warm, bright, hiss, next: ctx.currentTime + 0.15, step: 0, timer: 0 };
+      noise.timer = setInterval(playAhead, 400);
+      playAhead();
+    } catch (_) { noise = null; }
+  }
+
+  function stopNoise() {
+    if (!noise) return;
+    const { ctx, gain, timer } = noise;
+    noise = null;
+    clearInterval(timer);
+    try {
+      gain.gain.cancelScheduledValues(ctx.currentTime);
+      gain.gain.setValueAtTime(gain.gain.value, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.25);
+    } catch (_) {}
+    setTimeout(() => { ctx.close().catch(() => {}); }, 350);
+  }
+
+  function muteAd() {
+    const v = boundVideo;
+    if (!v || v.muted) return;
+    v.muted = true;
+    if (!adMuted.includes(v)) adMuted.push(v);
+  }
+
+  function renderAd() {
+    const v = boundVideo;
+    const left = v && isFinite(v.duration) && v.duration > 0 ? v.duration - v.currentTime : NaN;
+    ui.adClock.textContent = isFinite(left) ? fmtTime(Math.ceil(left)) : '';
+    // "1 of 2" when YouTube shows several ads in a row. The countdown is for the current one.
+    const pod = document.querySelector('#movie_player .video-ads [class*="pod-index"]');
+    const m = pod && /(\d+)\D+(\d+)/.exec(pod.textContent || '');
+    ui.adLabel.textContent = m ? `Ad ${m[1]} of ${m[2]} ends in` : 'Ad ends in';
+    ui.adNoise.textContent = settings.adNoise ? 'Jazz: on' : 'Jazz: off';
+    ui.adNoise.setAttribute('aria-pressed', String(settings.adNoise));
+  }
+
+  function checkAd() {
+    const player = document.getElementById('movie_player');
+    const inAd = !!(settings.on && player && player.classList.contains('ad-showing'));
+    if (inAd !== adOn) {
+      adOn = inAd;
+      document.documentElement.classList.toggle('thinstream-ad', inAd);
+      if (!inAd) {
+        // Only unmute what we muted. If the sound was already off, it stays off.
+        for (const v of adMuted) v.muted = false;
+        adMuted = [];
+        stopNoise();
+        lastUserScroll = 0;
+        scrollToActive(true);
+      }
+    }
+    if (!adOn) return;
+    muteAd();
+    if (settings.adNoise) {
+      startNoise();
+      // Browsers hold audio back until the page has had a click or a key press.
+      if (noise && noise.ctx.state === 'suspended') noise.ctx.resume().catch(() => {});
+    } else {
+      stopNoise();
+    }
+    renderAd();
   }
 
   function transcriptText(withTimes) {
@@ -360,6 +537,7 @@
     ui.fab.classList.toggle('ts-active', settings.on);
     if (settings.on || pageReady) ensurePage(() => send('set', { on: settings.on, lang: settings.lang }));
     mount();
+    checkAd();
   }
 
   function mount() {
@@ -414,6 +592,7 @@
     if (changed) apply();
   });
   setInterval(mount, 1000);
+  setInterval(checkAd, 500);
   setInterval(flushStats, 15000);
   document.addEventListener('yt-navigate-finish', mount);
   document.addEventListener('visibilitychange', () => { if (document.hidden) flushStats(); });

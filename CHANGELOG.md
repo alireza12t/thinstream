@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4 (2026-11-13)
+
+- New: during an ad in listen mode, the ad is muted and the panel shows a countdown to the end of the ad in place of the transcript, with a quiet jazz loop so the silence does not feel like a stall. The music is made in the browser, nothing is downloaded, and it can be switched off on the ad screen. Sound and the transcript come back when the ad ends. YouTube's own Skip button stays visible on top.
+
 ## 1.0.3 (2026-11-13)
 
 - Fixed: the transcript often failed to load on videos where YouTube's player never fills its caption list (common with auto-generated captions). Thinstream now builds the list from the video's own data after a few seconds and loads the track.

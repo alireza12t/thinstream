@@ -35,7 +35,7 @@
   "description": "A free browser extension for Chrome, Firefox and Safari that holds a YouTube video at 144p, hides the picture, and shows a transcript that follows the audio. Made for slow or metered internet.",
   "applicationCategory": "BrowserApplication",
   "operatingSystem": "Chrome, Edge, Brave, Firefox, Safari on macOS",
-  "softwareVersion": "1.0.3",
+  "softwareVersion": "1.0.4",
   "datePublished": "2026-11-12",
   "url": "https://alireza12t.github.io/thinstream/",
   "downloadUrl": "https://github.com/alireza12t/thinstream/releases/latest",
@@ -79,7 +79,7 @@
     { "@type": "Question", "name": "Does it collect any data?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. It makes no network requests of its own. Settings stay in your browser." } },
     { "@type": "Question", "name": "Does it block ads?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. It does not touch ads." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Ads still play. In listen mode they are muted, and a countdown shows when your video continues." } },
     { "@type": "Question", "name": "Which browsers does it work in?",
       "acceptedAnswer": { "@type": "Answer", "text": "Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project." } },
     { "@type": "Question", "name": "Does it work on iPhone?",
@@ -156,7 +156,7 @@
   <p class="lead">Thinstream is a free extension for Chrome, Firefox and Safari. Press one button and the video drops to 144p and hides. You get the audio and a transcript that follows along.</p>
   <div class="cta">
     <a class="btn primary" href="https://github.com/alireza12t/thinstream/releases/latest">Download for Chrome</a>
-    <a class="btn" href="https://github.com/alireza12t/thinstream/releases/latest/download/thinstream-firefox-1.0.3.zip">Download for Firefox</a>
+    <a class="btn" href="https://github.com/alireza12t/thinstream/releases/latest/download/thinstream-firefox-1.0.4.zip">Download for Firefox</a>
     <a class="btn" href="https://github.com/alireza12t/thinstream#safari-on-mac">Safari on Mac</a>
     <a class="btn" href="https://github.com/alireza12t/thinstream">GitHub</a>
   </div>
@@ -192,12 +192,12 @@
 
 <h2>Install</h2>
 <ol>
-  <li>Download <code>thinstream-chrome-1.0.3.zip</code> from the <a href="https://github.com/alireza12t/thinstream/releases/latest">latest release</a> and unzip it.</li>
+  <li>Download <code>thinstream-chrome-1.0.4.zip</code> from the <a href="https://github.com/alireza12t/thinstream/releases/latest">latest release</a> and unzip it.</li>
   <li>Open <code>chrome://extensions</code> and turn on Developer mode.</li>
   <li>Click Load unpacked and pick the unzipped folder.</li>
   <li>Open a YouTube video and press the Thinstream button in the player.</li>
 </ol>
-<p>Works in Chrome, Edge, Brave and Arc. Firefox 140 or newer has its own zip: <a href="https://github.com/alireza12t/thinstream/releases/latest/download/thinstream-firefox-1.0.3.zip">download it</a>, open <code>about:debugging</code>, This Firefox, Load Temporary Add-on, and pick the zip. A Firefox Add-ons listing is on the way. For Safari on Mac, build the Xcode project in the repo. <a href="https://github.com/alireza12t/thinstream#install">Full steps</a>.</p>
+<p>Works in Chrome, Edge, Brave and Arc. Firefox 140 or newer has its own zip: <a href="https://github.com/alireza12t/thinstream/releases/latest/download/thinstream-firefox-1.0.4.zip">download it</a>, open <code>about:debugging</code>, This Firefox, Load Temporary Add-on, and pick the zip. A Firefox Add-ons listing is on the way. For Safari on Mac, build the Xcode project in the repo. <a href="https://github.com/alireza12t/thinstream#install">Full steps</a>.</p>
 
 <h2 id="compare">How it compares</h2>
 <div class="scroll">
@@ -225,7 +225,7 @@
 <details><summary>What if a video has no captions?</summary><p>Listen mode still works and the audio keeps playing. The panel tells you there is no transcript.</p></details>
 <details><summary>Does it need YouTube Premium or an account?</summary><p>No.</p></details>
 <details><summary>Does it collect any data?</summary><p>No. It makes no network requests of its own. Settings stay in your browser.</p></details>
-<details><summary>Does it block ads?</summary><p>No. It does not touch ads.</p></details>
+<details><summary>Does it block ads?</summary><p>No. Ads still play. In listen mode they are muted, and a countdown shows when your video continues.</p></details>
 <details><summary>Which browsers does it work in?</summary><p>Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project.</p></details>
 <details><summary>Does it work on iPhone?</summary><p>An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app.</p></details>
 <details><summary>Is it free?</summary><p>Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money.</p></details>

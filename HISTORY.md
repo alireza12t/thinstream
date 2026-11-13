@@ -24,6 +24,8 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 - **Caption requests are watched from page load**, not from the moment listen mode turns on. If captions were already on, the player had fetched the track before the patch existed and would not ask again, and the performance entry fallback fails when YouTube's resource timing buffer is full (seen on a long film). Found on 2026-11-12 while recording the demo.
 - **Click to jump goes through `player.seekTo`** (message `seek` from `content.js` to `page.js`), not `video.currentTime`.
 - **Quality labels come from `qualityLabel`**, not `height`. Wide films have heights like 546 for 720p.
+- **Ad break screen (2026-11-13, his request).** While `#movie_player` has `ad-showing` in listen mode, `content.js` mutes the video element (`video.muted`, not the player's mute, so YouTube's saved volume is untouched), shows a countdown (`duration - currentTime` of the ad, plus "Ad 1 of 2" from `.ytp-ad-pod-index`) and plays a jazz loop made with Web Audio (he asked for "jazz white noise" in place of plain noise: ii V I VI at 84 bpm, electric piano chords, walking bass, brushed ride, a little hiss; `JAZZ` and `playAhead` in `content.js`, no audio file). Setting `adNoise` (default on) has a "Jazz: on/off" button on the ad screen. Only what we muted gets unmuted. The music needs one click or key press on the page first (browser autoplay rule).
+- **No auto skip.** He asked for it. Tested on a real skippable ad on 2026-11-13: a scripted `click()` on `.ytp-skip-ad-button` every second for 25 seconds did nothing, YouTube only takes real clicks. Getting around that means faking input or cutting the ad short, which is ad blocking and would risk the store listings, so it was left out. YouTube's Skip button already draws on top of the panel and works with a real click.
 - The data estimate uses the byte sizes in the player response for that video. Baseline is the quality the player was on, else 720p.
 
 ## What was tested
@@ -32,10 +34,13 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 - Headless Chrome gets an empty caption response from YouTube (bot check), so the transcript was tested by running the same `page.js` and `content.js` on live YouTube in the Claude browser pane: transcript load, language switch, click to seek, video change, turn off. All passed.
 - Firefox 160 (test binary from `@puppeteer/browsers`, driven with `puppeteer-core`): add-on installs, button, 144p, hide, restore, transcript rendering, click to seek, text size all passed. `web-ext lint`: 0 errors. Popup not opened in Firefox. To launch Firefox from a sandboxed shell set `CFFIXED_USER_HOME` and `HOME` to a scratch folder, otherwise it dies with "Could not find profile folder".
 - Demo footage: `demo/record.mjs` records the real extension in Chrome for Testing (`page.screencast`), replaying the caption file from `demo/captions-tears-of-steel.json` (lines YouTube served for that CC BY film in a normal browser). Limits of a test browser on YouTube, learned the hard way: it only gets about the first 50 seconds of a video, any seek ends in "Something went wrong", and captions come back empty. So each clip starts from a fresh page load and click to jump is not recorded.
+- Ad break screen, 2026-11-13: real extension in signed-out Chrome for Testing on a real 15 second ad (muted, countdown 0:11 to 0:01, transcript and sound back after), and the same code on live YouTube in the browser pane, signed out, on a real two-ad break with a Skip button ("Ad 1 of 2 ends in", Skip stays on top). `tests/e2e-chrome.mjs` passed. Not run: Firefox (no test binary on the Mac now), Safari, phones. The jazz loop was measured in the browser pane on a simulated ad (12 seconds, peak 0.30, no clipping, no errors) but not heard by ear.
 - Safari: `Thinstream (macOS)` and `Thinstream (iOS)` compile with `CODE_SIGNING_ALLOWED=NO`. **Not run inside Safari.**
 - m.youtube.com in mobile emulation: 144p, panel and the floating button work. The caption response came back empty in emulation, so the transcript on a real phone is unknown.
 
 ## Open items
+
+- [ ] Ad break screen is in the working tree, not committed and not released. Needs a version from Alireza (next would be 1.0.4) and a listen by ear to the jazz loop (overall level is the `0.7` gain in `startNoise`).
 
 ### After Alireza approves the videos (his instruction, 2026-11-12)
 

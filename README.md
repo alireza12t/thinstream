@@ -68,7 +68,7 @@ No, and I would rather say so. YouTube's web player now gets audio and video thr
 
 ### Chrome, Edge, Brave, Arc and other Chromium browsers
 
-1. Download `thinstream-chrome-1.0.3.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
+1. Download `thinstream-chrome-1.0.4.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode** (top right).
 4. Click **Load unpacked** and pick the unzipped folder.
@@ -77,7 +77,7 @@ It is not on the Chrome Web Store yet.
 
 ### Firefox
 
-1. Download `thinstream-firefox-1.0.3.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
+1. Download `thinstream-firefox-1.0.4.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
 2. Open `about:debugging#/runtime/this-firefox`.
 3. Click **Load Temporary Add-on** and pick the zip.
 
@@ -165,7 +165,7 @@ No.
 Yes. It lists every caption track the video has, including auto generated ones, and handles right to left languages such as Persian and Arabic.
 
 **Does it block ads?**
-No. It does not touch ads.
+No. Ads still play. In listen mode they are muted, and a countdown shows when your video continues.
 
 **Does it collect any data?**
 No. It makes no network requests of its own. Your settings and the "data saved" counter stay in your browser. See [PRIVACY.md](PRIVACY.md).
@@ -200,7 +200,7 @@ When you turn listen mode off, your earlier quality setting and caption state ar
 ./scripts/build.sh
 ```
 
-That writes `dist/thinstream-chrome-1.0.3.zip`, `dist/thinstream-firefox-1.0.3.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
+That writes `dist/thinstream-chrome-1.0.4.zip`, `dist/thinstream-firefox-1.0.4.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
 
 For Safari, open the Xcode project as described in [Install](#install).
 
