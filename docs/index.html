@@ -107,6 +107,8 @@
     text-decoration: none; border: 1px solid var(--line); color: var(--fg); background: var(--card);
   }
   .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+  .stats { margin: 18px 0 0; color: var(--muted); font-size: 15px; }
+  .stats b { color: var(--fg); }
   .shot { margin: 34px 0 8px; }
   .shot img { width: 100%; height: auto; display: block; border-radius: 16px; border: 1px solid var(--line); }
   h2 { font-size: 26px; line-height: 1.2; margin: 52px 0 14px; letter-spacing: -0.01em; }
@@ -146,6 +148,7 @@
     <a class="btn" href="https://github.com/alireza12t/thinstream#safari-on-mac">Safari on Mac</a>
     <a class="btn" href="https://github.com/alireza12t/thinstream">GitHub</a>
   </div>
+  <p class="stats" id="stats" hidden></p>
 </header>
 
 <div class="shot">
@@ -216,5 +219,40 @@
 </footer>
 
 </div>
+<script>
+// Download count under the buttons. It asks GitHub's public API, the same company
+// that serves this page, and sets no cookie. The line stays hidden until the
+// number is worth showing. Add #stats to the address to see it at any number.
+(function () {
+  var MIN_DOWNLOADS = 100; // show the line from this many downloads
+  var MIN_STARS = 20;      // add the stars from this many
+  var line = document.getElementById('stats');
+  var force = location.hash === '#stats';
+  var api = 'https://api.github.com/repos/alireza12t/thinstream';
+  var json = function (url) {
+    return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  };
+  var part = function (count, one, many) {
+    var b = document.createElement('b');
+    b.textContent = count.toLocaleString('en-US');
+    line.append(b, ' ' + (count === 1 ? one : many));
+  };
+  json(api + '/releases?per_page=100').then(function (releases) {
+    var downloads = 0;
+    releases.forEach(function (rel) {
+      rel.assets.forEach(function (a) { downloads += a.download_count; });
+    });
+    if (!force && downloads < MIN_DOWNLOADS) return;
+    return json(api).catch(function () { return null; }).then(function (repo) {
+      part(downloads, 'download from GitHub', 'downloads from GitHub');
+      if (repo && (force || repo.stargazers_count >= MIN_STARS)) {
+        line.append(' · ');
+        part(repo.stargazers_count, 'star', 'stars');
+      }
+      line.hidden = false;
+    });
+  }).catch(function () {});
+})();
+</script>
 </body>
 </html>

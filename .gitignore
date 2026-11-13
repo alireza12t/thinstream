@@ -12,3 +12,6 @@ demo/package*.json
 tests/node_modules/
 tests/package*.json
 tests/browsers/
+
+# Local stats history (traffic numbers, not public)
+stats/

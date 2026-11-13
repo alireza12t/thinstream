@@ -56,6 +56,16 @@ Do none of this before he says the videos are approved.
 - The development signed Mac app is at `dist/mac/Thinstream.app`. It was launched once, and `pluginkit` lists its extension, so Safari should show Thinstream under Settings, Extensions, waiting to be switched on.
 - Still needed, all at the Mac: switch the extension on in Safari and try it, create the app record in App Store Connect, real screenshots from Safari, upload from the Organizer, then TestFlight on a real iPhone before review.
 
+### Numbers (asked 2026-11-12)
+
+He asked for a way to see installs and use without intruding on privacy, then said: show the stats on the site for marketing, no dashboard, and hide them until the number is reasonable. The comparison and the reasons are in `STATS.md`.
+
+- Done: `scripts/stats.mjs` prints the GitHub numbers and saves each day to `stats/history.json` (not in git). First reading 2026-11-13 UTC: 4 downloads, 0 stars, 0 repo views.
+- Done: the site shows "N downloads from GitHub" under the buttons once N reaches 100 (`MIN_DOWNLOADS` in `docs/index.html`). Adding `#stats` to the site address shows it at any number.
+- The extension was not touched. No analytics service was signed up for, and no ping was added. The privacy texts are unchanged.
+- [ ] Run `node scripts/stats.mjs` at least once every two weeks, or GitHub's traffic days are lost. Any session working here should run it.
+- [ ] When the add-on is on addons.mozilla.org, look at switching the site line to its daily users number (public API, see `STATS.md`).
+
 ### Other
 
 
@@ -70,6 +80,7 @@ Do none of this before he says the videos are approved.
 ## Handy
 
 - `./scripts/build.sh` makes the Chrome zip, the Firefox zip and `dist/firefox/`.
+- `node scripts/stats.mjs` prints downloads, stars and repo traffic from GitHub and saves the day to `stats/history.json`.
 - `tests/e2e-chrome.mjs` and `tests/e2e-firefox.mjs` are the browser tests. How to run them is in each file's header.
 - The skill `thinstream` (in `~/.claude/skills/thinstream/`) tells a new session how to take over from a fresh clone.
 - `./scripts/publish.sh` creates the repo, topics, Pages and the release. Safe to run again.
