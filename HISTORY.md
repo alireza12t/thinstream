@@ -63,7 +63,8 @@ He asked for a way to see installs and use without intruding on privacy, then sa
 - Done: `scripts/stats.mjs` prints the GitHub numbers and saves each day to `stats/history.json` (not in git). First reading 2026-11-13 UTC: 4 downloads, 0 stars, 0 repo views.
 - Done: the site shows "N downloads from GitHub" under the buttons once N reaches 100 (`MIN_DOWNLOADS` in `docs/index.html`). Adding `#stats` to the site address shows it at any number.
 - The extension was not touched. No analytics service was signed up for, and no ping was added. The privacy texts are unchanged.
-- [ ] Run `node scripts/stats.mjs` at least once every two weeks, or GitHub's traffic days are lost. Any session working here should run it.
+- Done (he said "Yes, weekly" on 2026-11-12): a launchd job on his Mac runs `scripts/stats.mjs` every Monday at 10:15, so GitHub's 14 day traffic window loses no days. File: `~/Library/LaunchAgents/com.alireza12t.thinstream-stats.plist`, log: `~/Library/Logs/thinstream-stats.log`. Run once by hand through launchd, exit code 0. To remove it: `launchctl bootout gui/$(id -u)/com.alireza12t.thinstream-stats`, then move the plist to the Trash. If the Mac is off on a Monday that week is skipped, so a session working here should still run the script.
+- The `thinstream` skill has a "Numbers" section with all of this.
 - [ ] When the add-on is on addons.mozilla.org, look at switching the site line to its daily users number (public API, see `STATS.md`).
 
 ### Other
