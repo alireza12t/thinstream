@@ -60,7 +60,7 @@ No, and I would rather say so. YouTube's web player now gets audio and video thr
 
 ### Chrome, Edge, Brave, Arc and other Chromium browsers
 
-1. Download `thinstream-chrome-1.0.0.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
+1. Download `thinstream-chrome-1.0.1.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode** (top right).
 4. Click **Load unpacked** and pick the unzipped folder.
@@ -69,7 +69,7 @@ It is not on the Chrome Web Store yet.
 
 ### Firefox
 
-1. Download `thinstream-firefox-1.0.0.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
+1. Download `thinstream-firefox-1.0.1.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
 2. Open `about:debugging#/runtime/this-firefox`.
 3. Click **Load Temporary Add-on** and pick the zip.
 
@@ -186,7 +186,7 @@ When you turn listen mode off, your earlier quality setting and caption state ar
 ./scripts/build.sh
 ```
 
-That writes `dist/thinstream-chrome-1.0.0.zip`, `dist/thinstream-firefox-1.0.0.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
+That writes `dist/thinstream-chrome-1.0.1.zip`, `dist/thinstream-firefox-1.0.1.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
 
 For Safari, open the Xcode project as described in [Install](#install).
 
@@ -194,6 +194,7 @@ For Safari, open the Xcode project as described in [Install](#install).
 
 - Chrome for Testing with the real extension loaded: button, 144p, hide, restore, popup, and the Safari style loading path.
 - The same code on live YouTube in a normal browser session: transcript loading, language switch, click to seek, moving to another video.
+- Version 1.0.1 fixes (captions already on, jumping far ahead, quality labels): checked on live YouTube in a normal browser session, then the Chrome and Firefox tests were run again.
 - Firefox 160 with the real add-on loaded: button, 144p, hide, restore, the transcript view, click to seek and text size. Mozilla's `web-ext lint` reports no errors. The popup was not opened in Firefox.
 - Safari: the Mac and iOS apps compile. The extension has not been run inside Safari yet.
 

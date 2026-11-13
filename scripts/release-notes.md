@@ -1,25 +1,20 @@
-First release of Thinstream, a free listen mode for YouTube.
+Three fixes found while filming the demo.
 
-When the internet is slow, press one button in the YouTube player. The video drops to 144p and hides, and you get the audio with a transcript that follows along.
+**Fixed**
 
-**What's in it**
-
-- Listen mode button in the player and in the toolbar popup
-- Holds the video at 144p and hides the picture
-- Transcript that follows the audio, click a line to jump
-- Caption language picker, text size, copy, save as `.txt`
-- Data estimate for the video you are on
-- No account, no server, no tracking
+- The transcript could fail to load when captions were already on before listen mode was switched on. It now shows right away.
+- The data estimate showed odd quality labels such as "546p" on wide films. It now uses YouTube's own labels.
+- Clicking a transcript line now jumps with the player's own seek call, which is the safer way to move around long videos.
 
 **Install on Chrome, Edge, Brave or Arc**
 
-1. Download `thinstream-chrome-1.0.0.zip` below and unzip it.
+1. Download `thinstream-chrome-1.0.1.zip` below and unzip it.
 2. Open `chrome://extensions` and turn on Developer mode.
-3. Click Load unpacked and pick the unzipped folder.
+3. Click Load unpacked and pick the unzipped folder. If you loaded 1.0.0 before, remove it first.
 
 **Install on Firefox**
 
-1. Download `thinstream-firefox-1.0.0.zip` below.
+1. Download `thinstream-firefox-1.0.1.zip` below.
 2. Open `about:debugging#/runtime/this-firefox`.
 3. Click Load Temporary Add-on and pick the zip. Firefox removes it on restart, so load it again next time. Needs Firefox 140 or newer.
 

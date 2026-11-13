@@ -8,7 +8,8 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 
 ## State
 
-- 1.0.0 built and published on 2026-11-12: public repo, GitHub Pages site and release `v1.0.0` with the Chrome zip are live.
+- 1.0.0 built and published on 2026-11-12: public repo, GitHub Pages site and release `v1.0.0`.
+- 1.0.1 published the same day with three fixes (see CHANGELOG.md). Alireza said "Yes, cut 1.0.1". Before the release the fixes were checked on live YouTube in the browser pane (transcript in 252 ms with captions already on, a jump from 0:09 to 2:11 with no player error), and the Chrome and Firefox tests were run again.
 - License: PolyForm Noncommercial 1.0.0. Alireza asked for "anyone can use it, nobody can earn money from it".
 - Name check: no extension called Thinstream turned up in a web search on 2026-11-12. A fuzzy App Store check has not been done.
 
@@ -39,7 +40,6 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 - [ ] Run it in Safari on the Mac once (Xcode, Run, enable in Safari settings) and confirm the transcript loads.
 - [ ] Try the iOS build on a real iPhone. The panel is cramped at phone size, it probably wants to sit below the player.
 - [ ] Firefox: submit to addons.mozilla.org for signing so it installs for good. It is free but needs Alireza's Mozilla account. Until then it loads as a temporary add-on.
-- [ ] Cut 1.0.1 with the three fixes listed under Unreleased in CHANGELOG.md. Needs Alireza's yes (version change).
 - [ ] Chrome Web Store listing. Needs the one time $5 developer fee, so it is Alireza's call.
 - [ ] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). There is no API for it.
 - [ ] Demo video (separate session).
