@@ -17,7 +17,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 const browser = await puppeteer.launch({
   browser: 'firefox',
   executablePath: process.env.FF,
-  headless: true, userDataDir: process.env.OUT + '/profile',
+  headless: true, userDataDir: path.join(OUT, 'profile'),
   extraPrefsFirefox: { 'media.autoplay.default': 0, 'media.volume_scale': '0.0', 'intl.accept_languages': 'en-US, en' },
 });
 console.log('version:', await browser.version());
