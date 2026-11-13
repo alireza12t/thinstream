@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thinstream: listen to YouTube and read the transcript on slow internet</title>
+<title>Thinstream: listen to YouTube with a transcript on slow internet</title>
 <meta name="description" content="Free Chrome, Firefox and Safari extension for slow internet. One click holds a YouTube video at 144p, hides it, and shows a transcript that follows the audio. No account, no tracking.">
 <meta name="keywords" content="YouTube audio only extension, YouTube transcript extension, YouTube data saver, listen to YouTube without video, YouTube slow internet, YouTube low bandwidth, Chrome extension, Firefox add-on, Safari extension, YouTube listen mode">
 <meta name="author" content="Alireza Toghiani">
@@ -19,6 +19,8 @@
 <meta property="og:image" content="https://alireza12t.github.io/thinstream/assets/og.png">
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Thinstream listen mode on a YouTube video: the picture is hidden and a transcript that follows the audio fills the player">
+<meta name="twitter:image:alt" content="Thinstream listen mode on a YouTube video: the picture is hidden and a transcript that follows the audio fills the player">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Thinstream: listen mode for YouTube">
 <meta name="twitter:description" content="Audio plus a synced transcript when your internet is slow. Free for Chrome, Firefox and Safari.">
@@ -61,19 +63,29 @@
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "How do I listen to a YouTube video without loading the video?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Install Thinstream, open the video and press the Listen mode button in the player. The video drops to 144p and is hidden, and you get the audio with a transcript that follows along." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Install Thinstream, open the video and press the Listen mode button in the player. The video drops to 144p and is hidden, and you get the audio with a transcript." } },
     { "@type": "Question", "name": "How can I watch YouTube on slow internet or a small data plan?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Use Thinstream's listen mode. It holds every video at 144p. On a 10 minute test video that was about 15 MB instead of 66 to 97 MB at 720p." } },
-    { "@type": "Question", "name": "Does Thinstream download only the audio?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. YouTube's web player no longer offers a separate audio stream, so Thinstream holds the video at 144p and hides it. On the test video the hidden picture was about 5 MB of the 15 MB total." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Use listen mode. It holds every video at 144p. On a 10 minute test video that was about 15 MB instead of 66 to 97 MB at 720p." } },
+    { "@type": "Question", "name": "Is there an audio only YouTube extension that still works?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Thinstream works on YouTube as of 2026-11-12, in Chrome, Firefox and Safari. It isn't true audio only, but it holds the video at 144p and hides it, so you get the audio and a transcript on very little data." } },
+    { "@type": "Question", "name": "Does it download only the audio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. YouTube's web player no longer offers a separate audio stream, so 144p is the floor. On the test video the hidden picture was about 5 MB of the 15 MB." } },
     { "@type": "Question", "name": "Can I read a YouTube video instead of watching it?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. Thinstream fills the player with the transcript, highlights the current line, and lets you copy it or save it as a text file." } },
-    { "@type": "Question", "name": "Is Thinstream free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. It is free for any noncommercial use under the PolyForm Noncommercial 1.0.0 license. It needs no account and no YouTube Premium." } },
-    { "@type": "Question", "name": "Does Thinstream collect data?",
+    { "@type": "Question", "name": "What if a video has no captions?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Listen mode still works and the audio keeps playing. The panel tells you there is no transcript." } },
+    { "@type": "Question", "name": "Does it need YouTube Premium or an account?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No." } },
+    { "@type": "Question", "name": "Does it collect any data?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. It makes no network requests of its own. Settings stay in your browser." } },
-    { "@type": "Question", "name": "Which browsers does Thinstream work in?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project. An iPhone and iPad build is included but not yet tested on a device." } }
+    { "@type": "Question", "name": "Does it block ads?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It does not touch ads." } },
+    { "@type": "Question", "name": "Which browsers does it work in?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project." } },
+    { "@type": "Question", "name": "Does it work on iPhone?",
+      "acceptedAnswer": { "@type": "Answer", "text": "An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app." } },
+    { "@type": "Question", "name": "Is it free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money." } }
   ]
 }
 </script>
@@ -187,13 +199,15 @@
 </ol>
 <p>Works in Chrome, Edge, Brave and Arc. Firefox has its own zip in the same release. For Safari on Mac, build the Xcode project in the repo. <a href="https://github.com/alireza12t/thinstream#install">Full steps</a>.</p>
 
-<h2>How it compares</h2>
+<h2 id="compare">How it compares</h2>
 <div class="scroll">
 <table>
   <tr><th>Tool</th><th>Price</th><th>Lowers data use</th><th>Hides video</th><th>Synced transcript</th></tr>
   <tr class="me"><td>Thinstream</td><td>Free</td><td>Yes, holds 144p</td><td>Yes</td><td>Yes</td></tr>
   <tr><td>Audio Only Youtube</td><td>Free</td><td>Aims for audio only</td><td>Yes</td><td>No</td></tr>
   <tr><td>Music Mode for YouTube</td><td>Free</td><td>Lowers quality of hidden videos</td><td>Yes</td><td>No</td></tr>
+  <tr><td>YouTube Listen Mode</td><td>Free</td><td>Yes, a setting drops it to 144p</td><td>Yes</td><td>No</td></tr>
+  <tr><td>Transcript Mode for YouTube</td><td>Free</td><td>Not stated</td><td>Not stated</td><td>Yes</td></tr>
   <tr><td>Vinegar</td><td>$1.99</td><td>Has an audio only option</td><td>Replaces the player</td><td>No</td></tr>
   <tr><td>Glasp YouTube Summary</td><td>Free tier, Pro $15 a month</td><td>No</td><td>No</td><td>Yes, with AI summaries</td></tr>
   <tr><td>YouTube Show transcript</td><td>Free</td><td>No</td><td>No</td><td>Yes</td></tr>
@@ -204,11 +218,15 @@
 
 <h2>Questions</h2>
 <details><summary>How do I listen to a YouTube video without loading the video?</summary><p>Install Thinstream, open the video and press the Listen mode button in the player. The video drops to 144p and is hidden, and you get the audio with a transcript.</p></details>
+<details><summary>How can I watch YouTube on slow internet or a small data plan?</summary><p>Use listen mode. It holds every video at 144p. On a 10 minute test video that was about 15 MB instead of 66 to 97 MB at 720p.</p></details>
+<details><summary>Is there an audio only YouTube extension that still works?</summary><p>Thinstream works on YouTube as of 2026-11-12, in Chrome, Firefox and Safari. It isn't true audio only, but it holds the video at 144p and hides it, so you get the audio and a transcript on very little data. See <a href="#compare">How it compares</a>.</p></details>
 <details><summary>Does it download only the audio?</summary><p>No. YouTube's web player no longer offers a separate audio stream, so 144p is the floor. On the test video the hidden picture was about 5 MB of the 15 MB.</p></details>
+<details><summary>Can I read a YouTube video instead of watching it?</summary><p>Yes. Thinstream fills the player with the transcript, highlights the current line, and lets you copy it or save it as a text file.</p></details>
 <details><summary>What if a video has no captions?</summary><p>Listen mode still works and the audio keeps playing. The panel tells you there is no transcript.</p></details>
 <details><summary>Does it need YouTube Premium or an account?</summary><p>No.</p></details>
 <details><summary>Does it collect any data?</summary><p>No. It makes no network requests of its own. Settings stay in your browser.</p></details>
 <details><summary>Does it block ads?</summary><p>No. It does not touch ads.</p></details>
+<details><summary>Which browsers does it work in?</summary><p>Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project.</p></details>
 <details><summary>Does it work on iPhone?</summary><p>An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app.</p></details>
 <details><summary>Is it free?</summary><p>Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money.</p></details>
 

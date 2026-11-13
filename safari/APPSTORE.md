@@ -65,9 +65,11 @@ Thinstream is not affiliated with or endorsed by YouTube or Google. YouTube is a
 ## Keywords (100 max)
 
 ```
-youtube,transcript,audio only,data saver,slow internet,listen,captions,safari extension,low data
+listen,captions,subtitles,slow,internet,saver,bandwidth,hotspot,wifi,only,read,safari,extension
 ```
-(96 characters)
+(95 bytes)
+
+Apple matches the name, subtitle and keywords together, so no word from "Thinstream for YouTube" or "Audio and transcript, low data" is repeated here. Searches like "youtube audio only", "data saver", "low data", "slow internet" and "youtube captions" still match. Changed 2026-11-12 from an older draft that wasted about 30 bytes on repeats. If the draft in App Store Connect still has the old line, paste this one over it.
 
 ## What's New (version 1.0.1)
 

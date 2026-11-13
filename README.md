@@ -117,6 +117,8 @@ Checked on 2026-11-12 from each tool's own store page or site. If something here
 | **Thinstream** | Free | Chrome, Firefox, Safari | Yes, holds 144p | Yes | Yes |
 | [Audio Only Youtube](https://chromewebstore.google.com/detail/audio-only-youtube/pkocpiliahoaohbolmkelakpiphnllog) | Free | Chrome | Aims for audio only | Yes | No |
 | [Music Mode for YouTube](https://chromewebstore.google.com/detail/music-mode-for-youtube/abbpaepbpakcpipajigmlpnhlnbennna) | Free | Chrome, Firefox | Lowers the quality of hidden videos | Yes | No |
+| [YouTube Listen Mode](https://chromewebstore.google.com/detail/youtube-listen-mode/pbhfgfcljjildhfdglggpjnahaclpdcj) | Free | Chrome | Yes, a setting drops it to 144p | Yes | No |
+| [Transcript Mode for YouTube](https://addons.mozilla.org/en-US/firefox/addon/transcript-mode-for-youtube/) | Free | Firefox, Chrome, Edge and others | Not stated | Not stated, it adds a reading view | Yes |
 | [Vinegar](https://apps.apple.com/us/app/vinegar-tube-cleaner/id1591303229) | $1.99 | Safari on iPhone, iPad, Mac | Has an audio only option | Replaces the player | No, subtitles only |
 | [Glasp YouTube Summary](https://chromewebstore.google.com/detail/nmmicjeknamkfloonkhhcjmomieiodli) | Free tier, Pro $15 a month | Chrome, Edge, Firefox, Safari | No | No | Yes, with AI summaries |
 | YouTube's own [Show transcript](https://support.google.com/youtube/answer/15930243) | Free | All | No | No | Yes |
@@ -125,6 +127,7 @@ Checked on 2026-11-12 from each tool's own store page or site. If something here
 What I found when I looked:
 
 - I did not find another extension that does all three: lowest quality, hidden video and a synced transcript. That is the reason this exists.
+- YouTube Listen Mode (12 users, version 1.13.0) comes closest to all three. It hides the video and has a setting that drops it to 144p, but it has no transcript. Transcript Mode for YouTube has a synced reading view, but its listing says nothing about lowering quality or hiding the video.
 - Audio Only Youtube is the best known one, with 50,000 users. It is rated 1.9 out of 5 on the Chrome Web Store, and its GitHub issue ["Doesn't work at all"](https://github.com/Ashish-Bansal/audio-only-youtube/issues/119) has been open since March 2025.
 - Music Mode for YouTube is the closest on data. It is free, well rated, and can lower quality when it hides the video. It has no transcript.
 

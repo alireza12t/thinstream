@@ -69,6 +69,22 @@ He asked for a way to see installs and use without intruding on privacy, then sa
 - The `thinstream` skill has a "Numbers" section with all of this.
 - [ ] When the add-on is on addons.mozilla.org, look at switching the site line to its daily users number (public API, see `STATS.md`).
 
+### SEO (2026-11-12)
+
+Full audit, ranked gaps and his steps: `SEO-AUDIT-2026-11-12.md`. Done with the `seo` skill.
+
+- Done: site FAQ markup and visible FAQ are now the same 12 questions word for word (before, 6 of 7 marked-up questions weren't on the page). Added `og:image:alt`, shorter title.
+- Done: rechecked the "nothing else does all three" claim. Still true. YouTube Listen Mode (Chrome) and Transcript Mode for YouTube (Firefox) added to the README and site comparison.
+- Done: App Store keyword line in `safari/APPSTORE.md` no longer repeats name or subtitle words (95 bytes).
+- Done: store images in `assets/store/` (two 1280x800 screenshots, 440x280 and 1400x560 tiles) and an Edge section in `~/Desktop/Thinstream - Release Pack/FREE-LISTINGS.md`.
+- Blind search (5 real-user questions, fresh subagent): Thinstream in 0 of 5. Every hit was a store page. Recheck 2026-11-22.
+- [ ] Search Console: Request indexing for the home page once the push is live. Sitemap already submitted.
+- [ ] Bing Webmaster Tools: import from Search Console.
+- [ ] Edge Add-ons listing (free, text ready).
+- [ ] App Store Connect: paste the new keyword line if the draft has the old one.
+- [ ] Topic swap `listen-mode` for `web-extension`, waiting on his OK. Change `scripts/publish.sh` in the same commit.
+- [ ] `scripts/amo-media.sh` still uploads the old 4:3 and square images; point it at `assets/store/`.
+
 ### Other
 
 
@@ -76,7 +92,7 @@ He asked for a way to see installs and use without intruding on privacy, then sa
 - [ ] Try the iOS build on a real iPhone. The panel is cramped at phone size, it probably wants to sit below the player.
 - [ ] Firefox: submit to addons.mozilla.org for signing so it installs for good. It is free but needs Alireza's Mozilla account. Until then it loads as a temporary add-on.
 - [ ] Chrome Web Store listing. Needs the one time $5 developer fee, so it is Alireza's call.
-- [ ] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). There is no API for it.
+- [x] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). Live check 2026-11-12: the custom image is set.
 - [ ] Demo videos, waiting for Alireza's approval (2026-11-12): `video/thinstream-short-9x16.mp4` (32 s) and `video/thinstream-long-16x9.mp4` (5:35, captions in `video/thinstream-long-16x9.srt`). Both use the local Qwen3-TTS voice "ryan" (free). Scripts, voice lines and chapters in `video/SCRIPT.md`, hook review in `video/REVIEW-hook-script.md`. Edits are in ChatCut projects "Thinstream short 9x16" (timeline "Short v3 (voice)") and "Thinstream long 16x9" (timeline "Long v1 (voice)"). Build scripts in `video/build/`. Keep `video/build/` and the ChatCut projects until he approves; the text-only first short is in `video/build/out/`. New covers `video/covers/cover-*-v2.png` (approved by Alireza 2026-11-12) say "HOTEL WIFI? READ IT." over the real demo transcript (source `video/covers/src/*-v2.html`, rendered by `render-covers.mjs`); the old zoo covers are still beside them. The long video's popup shot shows 1.0.1. The release pack at `~/Desktop/Thinstream - Release Pack/` has both videos, `.en.srt` captions and the chapters.
 - [ ] Translated captions (YouTube's auto translate) are ignored for now.
 
