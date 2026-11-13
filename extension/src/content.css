@@ -206,3 +206,31 @@ html.thinstream-mobile.thinstream-watch #thinstream-fab {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 html.thinstream-mobile.thinstream-watch #thinstream-fab.ts-active { background: #5ef2c0; color: #06281f; }
+
+/* ---------- phones: panel is a sheet in the page, not on the player ---------- */
+html.thinstream-mobile.thinstream-on #thinstream-panel {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 58vh;
+  z-index: 2147482000;
+  box-sizing: border-box;
+  padding-bottom: env(safe-area-inset-bottom);
+  container-type: inline-size;
+  background: radial-gradient(120% 90% at 0% 0%, #12362d 0%, #0b1613 55%, #070b0a 100%);
+  color: #e9f5f0;
+  font-family: system-ui, -apple-system, sans-serif;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.45);
+  touch-action: manipulation;
+}
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-follow { bottom: 16px; }
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-tool,
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-lang { height: 34px; font-size: 14px; }
+html.thinstream-mobile.thinstream-watch.thinstream-on #thinstream-fab { bottom: calc(58vh + 12px); }
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-head { flex-wrap: wrap; row-gap: 6px; }
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-tools { flex-wrap: wrap; justify-content: flex-end; }
+html.thinstream-mobile.thinstream-on #thinstream-panel .ts-lang { max-width: 46vw; }

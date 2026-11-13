@@ -7,7 +7,10 @@
   const api = globalThis.browser ?? globalThis.chrome;
   const DEFAULTS = { on: false, hideExtras: false, fontSize: 20, lang: '' };
   const SVG = 'http://www.w3.org/2000/svg';
-  const MOBILE = location.hostname === 'm.youtube.com';
+  // Phones and tablets in any browser (Safari, Chrome, Firefox): the video player takes
+  // taps on top of it, so these get the panel as a sheet in the page instead.
+  const MOBILE = location.hostname === 'm.youtube.com'
+    || (typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches && !matchMedia('(pointer: fine)').matches);
 
   let settings = { ...DEFAULTS };
   let video = { id: null, title: '', duration: 0, sizes: null };
@@ -367,7 +370,10 @@
     const controls = player.querySelector('.ytp-right-controls-left') || player.querySelector('.ytp-right-controls');
     if (controls && ui.button.parentNode !== controls) controls.prepend(ui.button);
     if (MOBILE && !ui.fab.isConnected && document.body) document.body.append(ui.fab);
-    if (settings.on && ui.panel.parentNode !== player) player.append(ui.panel);
+    // On phones the video player swallows taps (Safari shows its own player options),
+    // so the panel sits in the page below the player instead of on top of it.
+    const host = MOBILE ? document.body : player;
+    if (settings.on && host && ui.panel.parentNode !== host) host.append(ui.panel);
     const v = player.querySelector('video');
     if (v && v !== boundVideo) {
       if (boundVideo) boundVideo.removeEventListener('timeupdate', onTime);
