@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Thinstream: Listen Mode for YouTube",
   "short_name": "Thinstream",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Listen to YouTube and read a synced transcript on slow internet. Video drops to 144p and hides.",
   "homepage_url": "https://alireza12t.github.io/thinstream/",
   "icons": {
