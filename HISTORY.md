@@ -41,7 +41,7 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 ## Open items
 
 - [ ] Jazz loop on the ad screen has not been heard by ear (overall level is the `0.7` gain in `startNoise`). Ask him how it sounds.
-- [ ] Upload the build 5 archives from Xcode's Organizer (see App Store status). Firefox is still not on addons.mozilla.org: he runs `sh scripts/amo-submit.sh` with his Mozilla keys.
+- [ ] Upload the build 5 archives from Xcode's Organizer (see App Store status). Firefox is still not on addons.mozilla.org: he runs `sh scripts/amo-submit.sh` with his Mozilla keys. Since 2026-11-13 the script keeps the keys in the macOS login Keychain (items `thinstream-amo-issuer` and `thinstream-amo-secret`, his request): the first run asks and saves, later runs reuse them, `--reset` clears them after he regenerates at Mozilla. Never read those items out in a session. On 2026-11-13 Mozilla's key page was rate limited and the secret was masked, so he regenerates on 2026-11-14 (a reminder is scheduled for 9:00).
 
 ### After Alireza approves the videos (his instruction, 2026-11-12)
 
