@@ -2,7 +2,7 @@
   <img src="assets/logo.svg" width="112" height="112" alt="Thinstream logo">
 </p>
 
-<h1 align="center">Thinstream</h1>
+<h1 align="center">Thinstream: listen mode for YouTube</h1>
 
 <p align="center">
   <b>Listen to YouTube and read the transcript when your internet is slow.</b><br>
@@ -15,6 +15,14 @@
   <a href="#install">Install</a> ·
   <a href="#how-it-compares">Comparison</a> ·
   <a href="#questions">Questions</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/alireza12t/thinstream/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/alireza12t/thinstream?label=release"></a>
+  <a href="#chrome-edge-brave-arc-and-other-chromium-browsers"><img alt="Chrome, Edge, Brave, Arc" src="https://img.shields.io/badge/Chrome%20%C2%B7%20Edge%20%C2%B7%20Brave-supported-4285F4?logo=googlechrome&logoColor=white"></a>
+  <a href="#firefox"><img alt="Firefox" src="https://img.shields.io/badge/Firefox-supported-FF7139?logo=firefoxbrowser&logoColor=white"></a>
+  <a href="#safari-on-mac"><img alt="Safari" src="https://img.shields.io/badge/Safari-supported-0FB5EE?logo=safari&logoColor=white"></a>
+  <a href="#license"><img alt="License: PolyForm Noncommercial" src="https://img.shields.io/badge/license-PolyForm%20Noncommercial-555"></a>
 </p>
 
 <p align="center">
@@ -134,6 +142,9 @@ Install Thinstream, open the video and press the Listen mode button in the playe
 
 **How can I watch YouTube on slow internet or a small data plan?**
 Use listen mode. It holds every video at 144p, which on the test video above is about 15 MB for ten minutes instead of 66 to 97 MB at 720p.
+
+**Is there an audio only YouTube extension that still works?**
+Thinstream works on YouTube as of 2026-11-12, in Chrome, Firefox and Safari. It isn't true audio only (see below), but it holds the video at 144p and hides it, so you get the audio and a transcript on very little data. The best known audio only extension, Audio Only Youtube, is rated 1.9 out of 5 and has an open "Doesn't work at all" issue. Music Mode for YouTube is another working option, without a transcript. See [How it compares](#how-it-compares).
 
 **Does it download only the audio?**
 No. YouTube's web player does not offer a separate audio stream any more, so 144p is the floor. See [Is it real audio only?](#is-it-real-audio-only)
