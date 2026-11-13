@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://github.com/alireza12t/thinstream/releases/latest">Download</a> ·
   <a href="https://alireza12t.github.io/thinstream/">Website</a> ·
+  <a href="https://www.youtube.com/watch?v=9wmyV0hV_Lw">Watch the video</a> ·
   <a href="#install">Install</a> ·
   <a href="#how-it-compares">Comparison</a> ·
   <a href="#questions">Questions</a>
