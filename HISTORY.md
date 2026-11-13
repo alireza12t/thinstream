@@ -91,6 +91,14 @@ Full audit, ranked gaps and his steps: `SEO-AUDIT-2026-11-12.md`. Done with the 
 - [ ] Topic swap `listen-mode` for `web-extension`, waiting on his OK. Change `scripts/publish.sh` in the same commit.
 - [ ] `scripts/amo-media.sh` still uploads the old 4:3 and square images; point it at `assets/store/`.
 
+### SEO recheck (2026-11-13)
+
+Audit: `SEO-AUDIT-2026-11-13.md`. Drift since 1.0.4 fixed in the repo: the site now links the YouTube video (button, VideoObject, llms.txt), the iPhone wording says it worked on one iPhone through TestFlight, sitemap dates, X handle and author `sameAs`. Checked with `site_check.py` on a local copy.
+
+- Live today: Bing Webmaster Tools is signed in but has no site yet. AMO and the App Store are still not public. Sitemap still "Couldn't fetch", not resubmitted.
+- [ ] YouTube title of the long video starts with "otel WiFi?", the H is missing. He fixes it in Studio.
+- Recheck 2026-11-23.
+
 ### Other
 
 

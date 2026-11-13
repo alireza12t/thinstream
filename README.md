@@ -95,7 +95,7 @@ Safari extensions ship inside a small Mac app, so this one is built with Xcode.
 
 ### iPhone and iPad
 
-The same Xcode project has a **Thinstream (iOS)** scheme and it compiles. It has not been tested on a real device yet, so treat it as experimental. It only works on youtube.com in Safari, not inside the YouTube app.
+The same Xcode project has a **Thinstream (iOS)** scheme and it compiles. It was tried on one iPhone through TestFlight on 2026-11-13 and worked. It is not on the App Store yet, so treat it as early. It only works on youtube.com in Safari, not inside the YouTube app.
 
 ## How to use it
 

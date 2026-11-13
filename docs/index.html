@@ -22,6 +22,8 @@
 <meta property="og:image:alt" content="Thinstream listen mode on a YouTube video: the picture is hidden and a transcript that follows the audio fills the player">
 <meta name="twitter:image:alt" content="Thinstream listen mode on a YouTube video: the picture is hidden and a transcript that follows the audio fills the player">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DevMvRick">
+<meta name="twitter:creator" content="@DevMvRick">
 <meta name="twitter:title" content="Thinstream: listen mode for YouTube">
 <meta name="twitter:description" content="Audio plus a synced transcript when your internet is slow. Free for Chrome, Firefox and Safari.">
 <meta name="twitter:image" content="https://alireza12t.github.io/thinstream/assets/og.png">
@@ -44,7 +46,9 @@
   "image": "https://alireza12t.github.io/thinstream/assets/og.png",
   "screenshot": "https://alireza12t.github.io/thinstream/assets/screenshot.png",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "author": { "@type": "Person", "name": "Alireza Toghiani", "url": "https://github.com/alireza12t" },
+  "author": { "@type": "Person", "name": "Alireza Toghiani", "url": "https://alireza12t.github.io/",
+    "sameAs": ["https://github.com/alireza12t", "https://www.youtube.com/@DevMvRick", "https://www.instagram.com/devmvrick/", "https://x.com/DevMvRick"] },
+  "sameAs": ["https://github.com/alireza12t/thinstream", "https://www.youtube.com/watch?v=9wmyV0hV_Lw"],
   "featureList": [
     "Holds YouTube video at the lowest quality, 144p",
     "Hides the video picture",
@@ -55,6 +59,19 @@
     "Per video data estimate",
     "No account, no server, no tracking"
   ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Thinstream: free listen mode for YouTube on slow internet",
+  "description": "A 5 minute 35 second walk through Thinstream: one click in the YouTube player holds the video at 144p, hides the picture, and shows a transcript that follows the audio.",
+  "thumbnailUrl": "https://i.ytimg.com/vi/9wmyV0hV_Lw/hqdefault.jpg",
+  "uploadDate": "2026-11-13T07:08:27-08:00",
+  "duration": "PT5M35S",
+  "embedUrl": "https://www.youtube.com/embed/9wmyV0hV_Lw",
+  "url": "https://www.youtube.com/watch?v=9wmyV0hV_Lw"
 }
 </script>
 <script type="application/ld+json">
@@ -83,7 +100,7 @@
     { "@type": "Question", "name": "Which browsers does it work in?",
       "acceptedAnswer": { "@type": "Answer", "text": "Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project." } },
     { "@type": "Question", "name": "Does it work on iPhone?",
-      "acceptedAnswer": { "@type": "Answer", "text": "An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "An iPhone and iPad build is in the repo. It was tried on one iPhone through TestFlight on 2026-11-13 and worked. It is not on the App Store yet, and it only works on youtube.com in Safari, not in the YouTube app." } },
     { "@type": "Question", "name": "Is it free?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money." } }
   ]
@@ -159,6 +176,7 @@
     <a class="btn" href="https://github.com/alireza12t/thinstream/releases/latest/download/thinstream-firefox-1.0.4.zip">Download for Firefox</a>
     <a class="btn" href="https://github.com/alireza12t/thinstream#safari-on-mac">Safari on Mac</a>
     <a class="btn" href="https://github.com/alireza12t/thinstream">GitHub</a>
+    <a class="btn" href="https://www.youtube.com/watch?v=9wmyV0hV_Lw">Watch the video (5:35)</a>
   </div>
   <p class="stats" id="stats" hidden></p>
 </header>
@@ -227,7 +245,7 @@
 <details><summary>Does it collect any data?</summary><p>No. It makes no network requests of its own. Settings stay in your browser.</p></details>
 <details><summary>Does it block ads?</summary><p>No. Ads still play. In listen mode they are muted, and a countdown shows when your video continues.</p></details>
 <details><summary>Which browsers does it work in?</summary><p>Chrome and other Chromium browsers such as Edge, Brave and Arc, Firefox 140 or newer, and Safari on Mac through an Xcode project.</p></details>
-<details><summary>Does it work on iPhone?</summary><p>An iPhone and iPad build is in the repo and compiles, but it has not been tested on a device yet. It would only work on youtube.com in Safari, not in the YouTube app.</p></details>
+<details><summary>Does it work on iPhone?</summary><p>An iPhone and iPad build is in the repo. It was tried on one iPhone through TestFlight on 2026-11-13 and worked. It is not on the App Store yet, and it only works on youtube.com in Safari, not in the YouTube app.</p></details>
 <details><summary>Is it free?</summary><p>Yes, for any noncommercial use, under the PolyForm Noncommercial 1.0.0 license. It can't be sold or used to make money.</p></details>
 
 <footer>
