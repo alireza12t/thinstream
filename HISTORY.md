@@ -51,7 +51,10 @@ Do none of this before he says the videos are approved.
 - This Mac has Apple Development certificates and one Apple Distribution certificate. That covers the App Store and TestFlight for both iOS and macOS.
 - There is no Developer ID Application certificate, so a notarized Mac app as a direct download on GitHub is not possible until he creates one.
 - No App Store Connect API key files were found, so uploads go through Xcode's Organizer or he runs the upload.
-- Needed before any of it: run the extension once in Safari, create the app record in App Store Connect (bundle id `com.alirezatoghiani.thinstream`), screenshots and the privacy answers.
+- He said "Yes, App Store" on 2026-11-12. Done since: store category, the encryption answer and a copyright line in the project, the app's own screen now explains what it does, privacy page at `docs/privacy.html`, and the listing kit in `safari/APPSTORE.md` (name "Thinstream for YouTube", description, keywords, review notes).
+- Signed archives of 1.0.1 built from the command line with automatic signing: `dist/appstore/Thinstream-mac-1.0.1.xcarchive` and `Thinstream-ios-1.0.1.xcarchive` (not in git). The App Store export failed from the command line ("No Accounts", no Mac distribution certificates), so the export and upload happen in Xcode's Organizer with him signed in.
+- The development signed Mac app is at `dist/mac/Thinstream.app`. It was launched once, and `pluginkit` lists its extension, so Safari should show Thinstream under Settings, Extensions, waiting to be switched on.
+- Still needed, all at the Mac: switch the extension on in Safari and try it, create the app record in App Store Connect, real screenshots from Safari, upload from the Organizer, then TestFlight on a real iPhone before review.
 
 ### Other
 
@@ -61,7 +64,7 @@ Do none of this before he says the videos are approved.
 - [ ] Firefox: submit to addons.mozilla.org for signing so it installs for good. It is free but needs Alireza's Mozilla account. Until then it loads as a temporary add-on.
 - [ ] Chrome Web Store listing. Needs the one time $5 developer fee, so it is Alireza's call.
 - [ ] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). There is no API for it.
-- [ ] Demo videos: a short (9:16) and a long (16:9, technical) are being made in `video/`. He asked for a voiceover on 2026-11-12 after hearing the first short without one.
+- [ ] Demo videos, waiting for Alireza's approval (2026-11-12): `video/thinstream-short-9x16.mp4` (32 s) and `video/thinstream-long-16x9.mp4` (5:35, captions in `video/thinstream-long-16x9.srt`). Both use the local Qwen3-TTS voice "ryan" (free). Scripts, voice lines and chapters in `video/SCRIPT.md`, hook review in `video/REVIEW-hook-script.md`. Edits are in ChatCut projects "Thinstream short 9x16" (timeline "Short v3 (voice)") and "Thinstream long 16x9" (timeline "Long v1 (voice)"). Build scripts in `video/build/`. Keep `video/build/` and the ChatCut projects until he approves; the text-only first short is in `video/build/out/`. Covers in `video/covers/` are from the earlier session and still show the old zoo screenshot.
 - [ ] Translated captions (YouTube's auto translate) are ignored for now.
 
 ## Handy
