@@ -153,14 +153,20 @@ async function openFilm(untilSeconds) {
   await addCursor();
   mouse = { x: 640, y: 360 };
   await page.mouse.move(640, 360);
-  while ((await filmTime()) < untilSeconds) await sleep(200);
+  await waitFilm(untilSeconds, 60000);
+}
+// Wait until the film reaches a time, but never longer than maxMs. A test browser can
+// stall (for example when the quality goes back up), and the take must still end.
+async function waitFilm(t, maxMs) {
+  const until = Date.now() + maxMs;
+  while ((await filmTime()) < t && Date.now() < until) await sleep(200);
 }
 async function endClip(n) {
   mark('end');
   const t = await filmTime(); const err = await errorShown();
   console.log(`clip ${n}: film at ${t}s, player error: ${err}`);
+  if (err) mark('PLAYER ERROR on screen at the end of this take, trim before it');
   await stop();
-  if (err) throw new Error('player error during clip ' + n);
 }
 
 // ---------- clip 1: normal video, one click, transcript follows ----------
@@ -168,12 +174,12 @@ await openFilm(11.5);
 await start('01-one-click');
 mark('film playing at normal quality');
 await moveTo(640, 300, 900);
-while ((await filmTime()) < 16.5) await sleep(150);
+await waitFilm(16.5, 15000);
 await clickOn('.thinstream-btn', null, 'click the Thinstream button');
 await sleep(1200);
 mark('listen mode on, 144p, transcript shown');
 await moveTo(1100, 330, 900);
-while ((await filmTime()) < 46.5) await sleep(250); // dialogue runs 0:23 to 0:43, lines light up one by one
+await waitFilm(46.5, 40000); // dialogue runs 0:23 to 0:43, lines light up one by one
 await endClip(1);
 
 // Click to jump is not recorded here: a test browser cannot skip ahead on YouTube.
@@ -222,8 +228,8 @@ const facts = await page.evaluate(() => ({
 await clickOn('#thinstream-panel .ts-tool', 'Show video', 'show video again');
 await sleep(600);
 mark('video is back');
-await moveTo(640, 330, 800);
-while ((await filmTime()) < 44) await sleep(250);
+await moveTo(640, 330, 700);
+await sleep(1800); // keep this short: a test browser stalls when the quality goes back up
 await endClip(3);
 
 // ---------- clip 4: the toolbar popup ----------
