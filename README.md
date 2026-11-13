@@ -68,7 +68,7 @@ No, and I would rather say so. YouTube's web player now gets audio and video thr
 
 ### Chrome, Edge, Brave, Arc and other Chromium browsers
 
-1. Download `thinstream-chrome-1.0.1.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
+1. Download `thinstream-chrome-1.0.2.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest) and unzip it.
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode** (top right).
 4. Click **Load unpacked** and pick the unzipped folder.
@@ -77,7 +77,7 @@ It is not on the Chrome Web Store yet.
 
 ### Firefox
 
-1. Download `thinstream-firefox-1.0.1.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
+1. Download `thinstream-firefox-1.0.2.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
 2. Open `about:debugging#/runtime/this-firefox`.
 3. Click **Load Temporary Add-on** and pick the zip.
 
@@ -200,7 +200,7 @@ When you turn listen mode off, your earlier quality setting and caption state ar
 ./scripts/build.sh
 ```
 
-That writes `dist/thinstream-chrome-1.0.1.zip`, `dist/thinstream-firefox-1.0.1.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
+That writes `dist/thinstream-chrome-1.0.2.zip`, `dist/thinstream-firefox-1.0.2.zip` and the unpacked Firefox build in `dist/firefox/`. There is no build step for the code itself. It is plain JavaScript with no dependencies.
 
 For Safari, open the Xcode project as described in [Install](#install).
 

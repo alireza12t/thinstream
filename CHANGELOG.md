@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2 (2026-11-13)
+
+- Fixed: on phones and tablets the buttons in the transcript panel could not be tapped, because the video player took the taps (Safari showed its own player options). On touch screens the panel is now a sheet at the bottom of the page, in Safari, Chrome and Firefox.
+- Shorter extension description, to fit Apple's 112 character limit for Safari.
+
 ## 1.0.1 (2026-11-12)
 
 - Fixed: the transcript could fail to load when captions were already on before listen mode was switched on.

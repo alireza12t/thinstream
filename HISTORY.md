@@ -114,3 +114,4 @@ Full audit, ranked gaps and his steps: `SEO-AUDIT-2026-11-12.md`. Done with the 
 - Declarations made with his OK: Content Rights "Yes, accesses third-party content, and I have the necessary rights"; age rating all No/None (4+); App Privacy published as Data Not Collected; review contact filled.
 - Store assets: `demo/store-shots.mjs` makes the Mac screenshots and the 29.5 s preview into `dist/appstore/`.
 - Website: the Firefox button downloads the Firefox zip from the latest release. Switch it to the addons.mozilla.org listing once Mozilla approves it.
+- 1.0.2 released 2026-11-13 (he said "Yes, cut 1.0.2"): phone and tablet panel fix for Chrome and Firefox. The Safari project stays at 1.0.1 for now, since the Mac 1.0.1 is in review and the iPhone build 3 (with the fix) was archived at 1.0.1.
