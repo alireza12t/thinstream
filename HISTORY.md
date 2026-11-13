@@ -37,16 +37,37 @@ Browser extension for Chrome, Firefox and Safari. On YouTube it holds the video 
 
 ## Open items
 
+### After Alireza approves the videos (his instruction, 2026-11-12)
+
+Do none of this before he says the videos are approved.
+
+- [ ] Archive the sessions that are no longer needed (the video session and its hook review session).
+- [ ] Clean up: working files in `video/` and `demo/footage/` go to the Trash, only what is needed stays.
+- [ ] One folder on the Desktop with the final Instagram and YouTube material only: the short, the long video, both covers, titles and descriptions. Nothing else kept.
+- [ ] Push everything to GitHub and make a release there. If the extension code has not changed since 1.0.1 there is nothing new to version, so ask him what the release should be before bumping.
+
+### Signing the Safari apps (asked 2026-11-12)
+
+- This Mac has Apple Development certificates and one Apple Distribution certificate. That covers the App Store and TestFlight for both iOS and macOS.
+- There is no Developer ID Application certificate, so a notarized Mac app as a direct download on GitHub is not possible until he creates one.
+- No App Store Connect API key files were found, so uploads go through Xcode's Organizer or he runs the upload.
+- Needed before any of it: run the extension once in Safari, create the app record in App Store Connect (bundle id `com.alirezatoghiani.thinstream`), screenshots and the privacy answers.
+
+### Other
+
+
 - [ ] Run it in Safari on the Mac once (Xcode, Run, enable in Safari settings) and confirm the transcript loads.
 - [ ] Try the iOS build on a real iPhone. The panel is cramped at phone size, it probably wants to sit below the player.
 - [ ] Firefox: submit to addons.mozilla.org for signing so it installs for good. It is free but needs Alireza's Mozilla account. Until then it loads as a temporary add-on.
 - [ ] Chrome Web Store listing. Needs the one time $5 developer fee, so it is Alireza's call.
 - [ ] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). There is no API for it.
-- [ ] Demo video (separate session).
+- [ ] Demo videos: a short (9:16) and a long (16:9, technical) are being made in `video/`. He asked for a voiceover on 2026-11-12 after hearing the first short without one.
 - [ ] Translated captions (YouTube's auto translate) are ignored for now.
 
 ## Handy
 
 - `./scripts/build.sh` makes the Chrome zip, the Firefox zip and `dist/firefox/`.
+- `tests/e2e-chrome.mjs` and `tests/e2e-firefox.mjs` are the browser tests. How to run them is in each file's header.
+- The skill `thinstream` (in `~/.claude/skills/thinstream/`) tells a new session how to take over from a fresh clone.
 - `./scripts/publish.sh` creates the repo, topics, Pages and the release. Safe to run again.
 - `node scripts/dev-server.mjs` serves the repo on localhost:8767 (also the `thinstream` entry in the parent folder's `.claude/launch.json`).

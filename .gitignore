@@ -9,3 +9,6 @@ build/
 demo/footage/
 demo/node_modules/
 demo/package*.json
+tests/node_modules/
+tests/package*.json
+tests/browsers/
