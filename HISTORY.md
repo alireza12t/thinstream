@@ -68,7 +68,7 @@ Do none of this before he says the videos are approved.
 
 He asked for a way to see installs and use without intruding on privacy, then said: show the stats on the site for marketing, no dashboard, and hide them until the number is reasonable. The comparison and the reasons are in `STATS.md`.
 
-- 2026-11-18 reading: 14 downloads (Chrome 5, Firefox zip 9), 0 stars, 17 repo views from 6 visitors and 262 clones from 116 cloners in the last 14 days. Clones are mostly bots and mirrors, not people.
+- 2026-11-18 reading: 14 downloads (Chrome 5, Firefox zip 9), 0 stars, 17 repo views from 6 visitors and 262 clones from 116 cloners in the last 14 days.
 - Done: `scripts/stats.mjs` prints the GitHub numbers and saves each day to `stats/history.json` (not in git). First reading 2026-11-13 UTC: 4 downloads, 0 stars, 0 repo views.
 - Done: the site shows "N downloads from GitHub" under the buttons once N reaches 100 (`MIN_DOWNLOADS` in `docs/index.html`). Adding `#stats` to the site address shows it at any number.
 - The extension was not touched. No analytics service was signed up for, and no ping was added. The privacy texts are unchanged.
@@ -135,3 +135,11 @@ Audit: `SEO-AUDIT-2026-11-13.md`. Drift since 1.0.4 fixed in the repo: the site 
 - 2026-11-13: iPhone build 1.0.1 (4) with the phone panel fix and the transcript fallback works on his iPhone through TestFlight (his words: "works"). Next session: take 3 iPhone screenshots, size them for iPhone 6.9 inch and iPad 13 inch, add them to the iOS 1.0.1 version page, attach build 4, and submit. The Mac 1.0.1 (build 2) in review does not have these fixes; ship them in the next Mac update.
 - 1.0.4 released 2026-11-13 (he said "Yes, cut 1.0.4"): ad break screen with mute, countdown and the jazz loop. GitHub release has both zips, the site shows 1.0.4, and the README and site answer to "Does it block ads?" now says ads still play, muted, with a countdown. Chrome test passed on the 1.0.4 build. Firefox test not run.
 - 2026-11-13: Safari project raised to 1.0.4 (he said yes when asked), build 5. Archives `dist/appstore/Thinstream-mac-1.0.4-build5.xcarchive` and `Thinstream-ios-1.0.4-build5.xcarchive`, also copied into `~/Library/Developer/Xcode/Archives/2026-11-13/` because the Organizer only lists archives from there. Built from the command line, not uploaded and not run in Safari. In App Store Connect the unsubmitted iOS 1.0.1 page gets renamed to 1.0.4. The Mac 1.0.1 (build 2) is still in review: he either pulls it and submits 1.0.4, or sends 1.0.4 as an update after approval. An earlier pair of build 5 archives labelled 1.0.1 is in the Trash.
+
+## 2026-11-18
+
+- Firefox Add-ons listing is public (1.0.4). Site, README and llms.txt point at it. Portfolio site (alireza12t.github.io) now has a Thinstream card under "Features I built for brands".
+- First run in the iOS Simulator (iPhone 16 Pro Max, iOS 18.6, debug build, ad hoc signed): extension switched on in Settings, Apps, Safari, Extensions (the switch needs a drag, a plain tap from the simulator tool does not flip it), m.youtube.com set to Allow. Listen mode button, panel, transcript following the audio and tap to jump all worked on Tears of Steel.
+- iPhone 6.9 inch store screenshots (1320x2868) and a raw screen recording: `dist/appstore/ios/` (not in git). No iPad 13 inch shots yet.
+- App Store Connect already has iOS build 6 (an upload of build 5 was refused: "must be higher than 6"). Not checked which version build 6 is, the browser pane is not signed in to App Store Connect.
+- [ ] iOS submit: sign in to App Store Connect, add the iPhone shots (and iPad shots if the app stays on iPad), attach the newest build, submit. Needs his sign-in and his yes.
