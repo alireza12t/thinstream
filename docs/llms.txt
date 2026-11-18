@@ -7,7 +7,7 @@ Facts:
 - Name: Thinstream (full name "Thinstream: Listen Mode for YouTube")
 - Version: 1.0.4, released 2026-11-13
 - Price: free for noncommercial use (PolyForm Noncommercial 1.0.0)
-- Browsers: Chrome, Edge, Brave, Arc. Firefox 140 or newer. Safari on Mac through an Xcode project. iPhone and iPad build included, tried on one iPhone through TestFlight on 2026-11-13, not on the App Store yet.
+- Browsers: Chrome, Edge, Brave, Arc. Firefox 140 or newer, on Firefox Add-ons: https://addons.mozilla.org/en-US/firefox/addon/thinstream-listen-mode-for-you/ Safari on Mac through an Xcode project. iPhone and iPad build included, tried on one iPhone through TestFlight on 2026-11-13, not on the App Store yet.
 - Needs: no account, no YouTube Premium, no server
 - Privacy: makes no network requests of its own, collects nothing
 - Author: Alireza Toghiani (github.com/alireza12t)

@@ -68,6 +68,7 @@ Do none of this before he says the videos are approved.
 
 He asked for a way to see installs and use without intruding on privacy, then said: show the stats on the site for marketing, no dashboard, and hide them until the number is reasonable. The comparison and the reasons are in `STATS.md`.
 
+- 2026-11-18 reading: 14 downloads (Chrome 5, Firefox zip 9), 0 stars, 17 repo views from 6 visitors and 262 clones from 116 cloners in the last 14 days. Clones are mostly bots and mirrors, not people.
 - Done: `scripts/stats.mjs` prints the GitHub numbers and saves each day to `stats/history.json` (not in git). First reading 2026-11-13 UTC: 4 downloads, 0 stars, 0 repo views.
 - Done: the site shows "N downloads from GitHub" under the buttons once N reaches 100 (`MIN_DOWNLOADS` in `docs/index.html`). Adding `#stats` to the site address shows it at any number.
 - The extension was not touched. No analytics service was signed up for, and no ping was added. The privacy texts are unchanged.
@@ -104,7 +105,8 @@ Audit: `SEO-AUDIT-2026-11-13.md`. Drift since 1.0.4 fixed in the repo: the site 
 
 - [ ] Run it in Safari on the Mac once (Xcode, Run, enable in Safari settings) and confirm the transcript loads.
 - [ ] Try the iOS build on a real iPhone. The panel is cramped at phone size, it probably wants to sit below the player.
-- [ ] Firefox on addons.mozilla.org: 1.0.1 is submitted and "Awaiting Review" as "Thinstream: Listen Mode for YouTube" (his screenshot, 2026-11-13). Not public yet. Next: submit 1.0.4 as a new version with `sh scripts/amo-submit.sh` once he has a new key, then switch the site's Firefox button to the listing when Mozilla approves.
+- [x] Firefox on addons.mozilla.org: live and public at 1.0.4 as "Thinstream: Listen Mode for YouTube" (checked on Mozilla's API 2026-11-18, slug `thinstream-listen-mode-for-you`). README, site button, FAQ, JSON-LD `sameAs` and llms.txt now point at the listing.
+- [ ] Site stats line: switch to (or add) the add-on's daily users from Mozilla's public API once it is above 0 (0 on 2026-11-18).
 - [ ] Chrome Web Store listing. Needs the one time $5 developer fee, so it is Alireza's call.
 - [x] Upload `assets/social-preview.png` in the GitHub repo settings (Social preview). Live check 2026-11-12: the custom image is set.
 - [ ] Demo videos, waiting for Alireza's approval (2026-11-12): `video/thinstream-short-9x16.mp4` (39 s, with a rivals beat) and `video/thinstream-long-16x9.mp4` (5:35, captions in `video/thinstream-long-16x9.srt`). Both use the local Qwen3-TTS voice "ryan" (free). Scripts, voice lines and chapters in `video/SCRIPT.md`, hook review in `video/REVIEW-hook-script.md`. Edits are in ChatCut projects "Thinstream short 9x16" (timeline "Short v4 (rivals)") and "Thinstream long 16x9" (timeline "Long v1 (voice)"). Build scripts in `video/build/`. Keep `video/build/` and the ChatCut projects until he approves; the text-only first short is in `video/build/out/`. New covers `video/covers/cover-*-v2.png` (approved by Alireza 2026-11-12) say "HOTEL WIFI? READ IT." over the real demo transcript (source `video/covers/src/*-v2.html`, rendered by `render-covers.mjs`); the old zoo covers are still beside them. The long video's popup shot shows 1.0.1. The release pack at `~/Desktop/Thinstream - Release Pack/` has both videos, `.en.srt` captions and the chapters.

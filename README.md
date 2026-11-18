@@ -21,7 +21,7 @@
 <p align="center">
   <a href="https://github.com/alireza12t/thinstream/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/alireza12t/thinstream?label=release"></a>
   <a href="#chrome-edge-brave-arc-and-other-chromium-browsers"><img alt="Chrome, Edge, Brave, Arc" src="https://img.shields.io/badge/Chrome%20%C2%B7%20Edge%20%C2%B7%20Brave-supported-4285F4?logo=googlechrome&logoColor=white"></a>
-  <a href="#firefox"><img alt="Firefox" src="https://img.shields.io/badge/Firefox-supported-FF7139?logo=firefoxbrowser&logoColor=white"></a>
+  <a href="https://addons.mozilla.org/en-US/firefox/addon/thinstream-listen-mode-for-you/"><img alt="Firefox Add-ons" src="https://img.shields.io/amo/v/thinstream-listen-mode-for-you?label=Firefox%20Add-ons&logo=firefoxbrowser&logoColor=white&color=FF7139"></a>
   <a href="#safari-on-mac"><img alt="Safari" src="https://img.shields.io/badge/Safari-supported-0FB5EE?logo=safari&logoColor=white"></a>
   <a href="#license"><img alt="License: PolyForm Noncommercial" src="https://img.shields.io/badge/license-PolyForm%20Noncommercial-555"></a>
 </p>
@@ -78,11 +78,9 @@ It is not on the Chrome Web Store yet.
 
 ### Firefox
 
-1. Download `thinstream-firefox-1.0.4.zip` from the [latest release](https://github.com/alireza12t/thinstream/releases/latest).
-2. Open `about:debugging#/runtime/this-firefox`.
-3. Click **Load Temporary Add-on** and pick the zip.
+Install it from [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/thinstream-listen-mode-for-you/). Needs Firefox 140 or newer.
 
-Firefox removes a temporary add-on when it restarts, so you load it again next time. A permanent install needs Mozilla to sign it, and it is not on addons.mozilla.org yet. Needs Firefox 140 or newer.
+The same build is also on the [latest release](https://github.com/alireza12t/thinstream/releases/latest) as `thinstream-firefox-1.0.4.zip`, if you want to load it by hand from `about:debugging#/runtime/this-firefox` (Load Temporary Add-on). Firefox removes a temporary add-on when it restarts.
 
 ### Safari on Mac
 
